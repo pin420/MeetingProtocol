@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSaveProtocol"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewFirstNameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Имя Фамилия"
+                android:textSize="18sp"
+                app:autoSizeTextType="none"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:text="Роман Пинкин "
+                app:layout_constraintStart_toStartOf="@+id/textViewFirstNameTitle"
+                app:layout_constraintTop_toBottomOf="@+id/textViewFirstNameTitle" />
+
+            <TextView
+                android:id="@+id/textViewDateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Дата"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/editTextFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/editTextFirstName" />
+
+
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="31.01.2023"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/textViewDateTitle"
+                app:layout_constraintTop_toTopOf="@+id/textViewDateTitle" />
+
+            <TextView
+                android:id="@+id/textViewTimeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Время"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/buttonChanceDate"
+                app:layout_constraintTop_toBottomOf="@+id/buttonChanceDate" />
+
+            <TextView
+                android:id="@+id/textViewTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="4:05"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/textViewTimeTitle"
+                app:layout_constraintTop_toTopOf="@+id/textViewTimeTitle" />
+
+            <Button
+                android:id="@+id/buttonChanceDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Изменить"
+                app:layout_constraintStart_toStartOf="@+id/textViewDateTitle"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDateTitle" />
+
+            <Button
+                android:id="@+id/buttonChanceTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Изменить"
+                app:layout_constraintStart_toStartOf="@+id/textViewTimeTitle"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTimeTitle" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonChanceTime">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Протокол" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/buttonSaveProtocol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Сохранить протокол"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
