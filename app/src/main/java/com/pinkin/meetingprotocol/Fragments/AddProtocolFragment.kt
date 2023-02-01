@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.pinkin.meetingprotocol.databinding.FragmentMainBinding
-import com.pinkin.meetingprotocol.navigator
+import com.pinkin.meetingprotocol.databinding.AddProtocolBinding
 
-class MainFragment : Fragment() {
-
-
+class AddProtocolFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,17 +15,9 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentMainBinding.inflate(inflater, container, false)
-
-
-        binding.addProtocol.setOnClickListener {
-
-            navigator().showAddProtocol()
-        }
-
+        val binding = AddProtocolBinding.inflate(inflater, container, false)
 
         return binding.root
     }
-
 
 }

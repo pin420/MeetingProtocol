@@ -2,10 +2,12 @@ package com.pinkin.meetingprotocol
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import com.pinkin.meetingprotocol.Fragments.AddProtocolFragment
 import com.pinkin.meetingprotocol.Fragments.MainFragment
 import com.pinkin.meetingprotocol.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Navigator {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -21,5 +23,19 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
+    }
+
+
+    override fun showAddProtocol() {
+        launchFragment(AddProtocolFragment())
+    }
+
+
+    private fun launchFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .addToBackStack(null)
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
     }
 }
