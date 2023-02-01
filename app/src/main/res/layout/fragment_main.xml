@@ -10,6 +10,8 @@
         android:id="@+id/meets_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="100"
         tools:listitem="@layout/item_meet"></androidx.recyclerview.widget.RecyclerView>
 
