@@ -113,6 +113,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/buttonChanceTime">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textProtocol"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Протокол" />

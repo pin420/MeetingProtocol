@@ -8,7 +8,6 @@ fun Fragment.navigator(): Navigator {
 
 interface Navigator {
 
-
-
     fun showAddProtocol()
+
 }
