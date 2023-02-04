@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.databinding.FragmentMainBinding
 import com.pinkin.meetingprotocol.navigator
 
@@ -26,6 +27,8 @@ class MainFragment : Fragment() {
             navigator().showAddProtocol()
         }
 
+        binding.toolbar.inflateMenu(R.menu.main_toolbar)
+        binding.toolbar.setTitle(R.string.app_name)
 
         return binding.root
     }
