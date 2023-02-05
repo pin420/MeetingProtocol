@@ -11,25 +11,14 @@ const val TAG = "ViewModel"
 
 
 
-class MainViewModel(
-
-    ): ViewModel() {
+class MainViewModel(): ViewModel() {
 
     private val stateLiveMutable = MutableLiveData<MainState>()
     val stateLive: LiveData<MainState> = stateLiveMutable
 
-
     init {
         Log.e(TAG, "VM created")
-
-
         stateLiveMutable.value = MainState("Roman", Calendar.getInstance().time, "Time", "Protocol")
-
-    }
-
-    override fun onCleared() {
-        Log.e(TAG, "VM cleared")
-        super.onCleared()
     }
 
     fun updateDate(newDate: Date) {
@@ -43,6 +32,11 @@ class MainViewModel(
                 )
             }
         )
+    }
+
+    override fun onCleared() {
+        Log.e(TAG, "VM cleared")
+        super.onCleared()
     }
 
 }

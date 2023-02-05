@@ -1,6 +1,5 @@
 package com.pinkin.meetingprotocol.Fragments
 
-
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
@@ -28,11 +27,11 @@ class DatePickerFragment : DialogFragment() {
         }
 
         val date = arguments?.getSerializable(ARG_DATE) as Date
-        val calendar = java.util.Calendar.getInstance()
+        val calendar = Calendar.getInstance()
         calendar.time = date
-        val initialYear = calendar.get(java.util.Calendar.YEAR)
-        val initialMonth = calendar.get(java.util.Calendar.MONTH)
-        val initialDate = calendar.get(java.util.Calendar.DAY_OF_MONTH)
+        val initialYear = calendar.get(Calendar.YEAR)
+        val initialMonth = calendar.get(Calendar.MONTH)
+        val initialDate = calendar.get(Calendar.DAY_OF_MONTH)
 
         return DatePickerDialog(
             requireContext(),
@@ -42,7 +41,6 @@ class DatePickerFragment : DialogFragment() {
             initialDate
         )
     }
-
 
     companion object {
         fun newInstance(date: Date): DatePickerFragment {

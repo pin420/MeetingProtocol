@@ -20,41 +20,41 @@ private const val REQUEST_DATE = 0
 class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks {
 
     private lateinit var vm: MainViewModel
-    val formatter = SimpleDateFormat("dd.MM.yyyy")
+    private val formatter = SimpleDateFormat("dd.MM.yyyy")
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         vm = ViewModelProvider(this, MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
         val binding = AddProtocolBinding.inflate(inflater, container, false)
 
-
-        binding.toolbar.inflateMenu(R.menu.add_protocol_toolbar)
-        binding.toolbar.setTitle("New protocol")
-        binding.toolbar.setOnMenuItemClickListener {
-            if (it.itemId == R.id.app_bar_done) {
-                Toast.makeText(context, "Save button pressed", Toast.LENGTH_SHORT).show()
-                true
+        binding.toolbar.apply {
+            inflateMenu(R.menu.add_protocol_toolbar)
+            title = "New protocol"
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.app_bar_done -> {
+                        Toast.makeText(context, "Save button pressed", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> false
+                }
             }
-            else false
-        }
-
-
-        vm.stateLive.observe(requireActivity()) {
-            binding.textViewDate.text = formatter.format(it.date)
         }
 
         binding.buttonChanceDate.setOnClickListener {
-
-            DatePickerFragment.newInstance(formatter.parse(binding.textViewDate.text.toString())).apply {
+            DatePickerFragment.newInstance(vm.stateLive.value!!.date).apply {
                 setTargetFragment(this@AddProtocolFragment, REQUEST_DATE)
                 show(this@AddProtocolFragment.requireFragmentManager(), DIALOG_DATE)
             }
+        }
 
+        vm.stateLive.observe(requireActivity()) {
+            binding.textViewDate.text = formatter.format(it.date)
         }
 
         return binding.root
