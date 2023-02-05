@@ -11,10 +11,16 @@ import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.AddProtocolBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
-class AddProtocolFragment : Fragment() {
+private const val DIALOG_DATE = "DialogDate"
+private const val REQUEST_DATE = 0
+
+class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks {
 
     private lateinit var vm: MainViewModel
+    val formatter = SimpleDateFormat("dd.MM.yyyy")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,9 +44,26 @@ class AddProtocolFragment : Fragment() {
         }
 
 
+        vm.stateLive.observe(requireActivity()) {
+            binding.textViewDate.text = formatter.format(it.date)
+        }
+
+        binding.buttonChanceDate.setOnClickListener {
+
+            DatePickerFragment.newInstance(formatter.parse(binding.textViewDate.text.toString())).apply {
+                setTargetFragment(this@AddProtocolFragment, REQUEST_DATE)
+                show(this@AddProtocolFragment.requireFragmentManager(), DIALOG_DATE)
+            }
+
+        }
 
         return binding.root
     }
 
+    override fun onDateSelected(date: Date) {
+        vm.updateDate(date)
+    }
+
 
 }
+
