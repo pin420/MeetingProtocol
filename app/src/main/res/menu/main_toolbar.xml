@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/app_bar_search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom"
+        android:title="Search"
+        app:actionViewClass="android.widget.SearchView" />
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/searchOption_mans"
+            android:title="Поиск по людям"
+            app:showAsAction="never"
+            android:checked="true" />
+
+        <item
+            android:id="@+id/searchOption_protocol"
+            android:title="Поиск по протоколу"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/searchOption_all"
+            android:title="Любое совпадение"
+            app:showAsAction="never" />
+    </group>
 </menu>
