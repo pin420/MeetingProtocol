@@ -38,6 +38,12 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
         binding.toolbar.apply {
             inflateMenu(R.menu.add_protocol_toolbar)
             title = "New protocol"
+
+            setNavigationIcon(com.google.android.material.R.drawable.abc_ic_ab_back_material)
+            setNavigationOnClickListener {
+                getActivity()?.onBackPressed();
+            }
+
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.app_bar_done -> {
