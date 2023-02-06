@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Роман Пинкин"
-                android:inputType="textPersonName"
                 android:minHeight="48dp"
+                android:inputType="textCapWords|textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/textViewFirstNameTitle"
                 app:layout_constraintTop_toBottomOf="@+id/textViewFirstNameTitle" />
 
@@ -120,6 +120,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textProtocol"
+                    android:inputType="text|textMultiLine|textCapSentences"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Протокол" />
