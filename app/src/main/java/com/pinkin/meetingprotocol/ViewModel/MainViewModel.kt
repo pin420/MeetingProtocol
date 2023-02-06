@@ -18,7 +18,7 @@ class MainViewModel(): ViewModel() {
 
     init {
         Log.e(TAG, "VM created")
-        stateLiveMutable.value = MainState("Roman", Calendar.getInstance().time, "Time", "Protocol")
+        stateLiveMutable.value = MainState("Roman", Calendar.getInstance().time, "Protocol")
     }
 
     fun updateDate(newDate: Date) {
@@ -26,8 +26,26 @@ class MainViewModel(): ViewModel() {
             stateLiveMutable.value?.let {
                 MainState(
                     name = it.name,
-                    date = newDate,
-                    time = it.time,
+                    dateTime = it.dateTime.apply {
+                        year = newDate.year
+                        month = newDate.month
+                        date = newDate.date
+                    },
+                    protocol = it.protocol
+                )
+            }
+        )
+    }
+
+    fun updateTime(newHour: Int, newMinute: Int) {
+        stateLiveMutable.postValue(
+            stateLiveMutable.value?.let {
+                MainState(
+                    name = it.name,
+                    dateTime = it.dateTime.apply {
+                        hours = newHour
+                        minutes = newMinute
+                    },
                     protocol = it.protocol
                 )
             }

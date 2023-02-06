@@ -15,12 +15,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 private const val DIALOG_DATE = "DialogDate"
-private const val REQUEST_DATE = 0
+private const val DIALOG_TIME = "DialogTime"
+private const val REQUEST_DATETIME = 0
 
-class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks {
+
+class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
 
     private lateinit var vm: MainViewModel
-    private val formatter = SimpleDateFormat("dd.MM.yyyy")
+    private val formatterDate = SimpleDateFormat("dd.MM.yyyy")
+    private val formatterTime = SimpleDateFormat("HH:mm")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,14 +50,22 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks {
         }
 
         binding.buttonChanceDate.setOnClickListener {
-            DatePickerFragment.newInstance(vm.stateLive.value!!.date).apply {
-                setTargetFragment(this@AddProtocolFragment, REQUEST_DATE)
+            DatePickerFragment.newInstance(vm.stateLive.value!!.dateTime).apply {
+                setTargetFragment(this@AddProtocolFragment, REQUEST_DATETIME)
                 show(this@AddProtocolFragment.requireFragmentManager(), DIALOG_DATE)
             }
         }
 
+        binding.buttonChanceTime.setOnClickListener {
+            TimePickerFragment.newInstance(vm.stateLive.value!!.dateTime).apply {
+                setTargetFragment(this@AddProtocolFragment, REQUEST_DATETIME)
+                show(this@AddProtocolFragment.requireFragmentManager(), DIALOG_TIME)
+            }
+        }
+
         vm.stateLive.observe(requireActivity()) {
-            binding.textViewDate.text = formatter.format(it.date)
+            binding.textViewDate.text = formatterDate.format(it.dateTime)
+            binding.textViewTime.text = formatterTime.format(it.dateTime)
         }
 
         return binding.root
@@ -62,6 +73,10 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks {
 
     override fun onDateSelected(date: Date) {
         vm.updateDate(date)
+    }
+
+    override fun onTimeSet(hour: Int, minute: Int) {
+        vm.updateTime(hour, minute)
     }
 
 
