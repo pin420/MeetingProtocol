@@ -77,7 +77,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
         return binding.root
     }
 
-    override fun onDateSelected(date: Date) {
+    override fun onDateSet(date: Date) {
         vm.updateDate(date)
     }
 
