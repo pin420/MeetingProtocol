@@ -4,14 +4,19 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.pinkin.businesslogic.UseCase.SaveProtocolUseCase
+import com.pinkin.meetingprotocol.MainEvent
 import com.pinkin.meetingprotocol.MainState
+import com.pinkin.meetingprotocol.SaveProtocolEvent
+import kotlinx.coroutines.launch
 import java.util.*
 
 const val TAG = "ViewModel"
 
 
 
-class MainViewModel(): ViewModel() {
+class MainViewModel(private val saveProtocolUseCase: SaveProtocolUseCase,): ViewModel() {
 
     private val stateLiveMutable = MutableLiveData<MainState>()
     val stateLive: LiveData<MainState> = stateLiveMutable
@@ -20,6 +25,20 @@ class MainViewModel(): ViewModel() {
         Log.e(TAG, "VM created")
         stateLiveMutable.value = MainState("Roman", Calendar.getInstance().time, "Protocol")
     }
+
+    fun send(event: MainEvent) {
+        viewModelScope.launch {
+            when (event) {
+                is SaveProtocolEvent -> {
+                        saveProtocolUseCase.execute(
+                            event.getName(),
+                            stateLiveMutable.value!!.dateTime,
+                            event.getProtocol())
+                }
+            }
+        }
+    }
+
 
     fun updateDate(newDate: Date) {
         stateLiveMutable.postValue(

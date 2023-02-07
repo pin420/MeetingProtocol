@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.pinkin.datasource.Room.Repositories
 import com.pinkin.meetingprotocol.R
+import com.pinkin.meetingprotocol.SaveProtocolEvent
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.AddProtocolBinding
@@ -30,6 +32,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Repositories.init(requireContext())
 
         vm = ViewModelProvider(this, MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
@@ -48,6 +51,12 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
                 when (it.itemId) {
                     R.id.app_bar_done -> {
                         Toast.makeText(context, "Save button pressed", Toast.LENGTH_SHORT).show()
+
+                        val saveProtocolEvent = SaveProtocolEvent()
+                        saveProtocolEvent.setName(binding.editTextFirstName.text.toString())
+                        saveProtocolEvent.setProtocol(binding.textProtocol.text.toString())
+                        vm.send(saveProtocolEvent)
+
                         true
                     }
                     else -> false
