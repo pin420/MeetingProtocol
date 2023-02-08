@@ -24,8 +24,6 @@ private const val REQUEST_DATETIME = 0
 class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
 
     private lateinit var vm: MainViewModel
-    private val formatterDate = SimpleDateFormat("dd.MM.yyyy")
-    private val formatterTime = SimpleDateFormat("HH:mm")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,6 +55,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
                         saveProtocolEvent.setProtocol(binding.textProtocol.text.toString())
                         vm.send(saveProtocolEvent)
 
+                        getActivity()?.onBackPressed();
                         true
                     }
                     else -> false
@@ -79,8 +78,8 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
         }
 
         vm.stateLive.observe(requireActivity()) {
-            binding.textViewDate.text = formatterDate.format(it.dateTime)
-            binding.textViewTime.text = formatterTime.format(it.dateTime)
+            binding.textViewDate.text = SimpleDateFormat("dd.MM.yyyy").format(it.dateTime)
+            binding.textViewTime.text = SimpleDateFormat("HH:mm").format(it.dateTime)
         }
 
         return binding.root
