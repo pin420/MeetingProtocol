@@ -7,22 +7,32 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pinkin.datasource.Room.Entities.ProtocolDbEntity
+import com.pinkin.datasource.Room.Repositories
 import com.pinkin.meetingprotocol.Adapter.Adapter
+import com.pinkin.meetingprotocol.GetProtocolsEvent
 import com.pinkin.meetingprotocol.R
+import com.pinkin.meetingprotocol.ViewModel.MainViewModel
+import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.FragmentMainBinding
 import com.pinkin.meetingprotocol.navigator
+import java.text.SimpleDateFormat
 
 class MainFragment : Fragment() {
 
-
+    private lateinit var vm: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
+        vm = ViewModelProvider(this, MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
 
@@ -34,43 +44,12 @@ class MainFragment : Fragment() {
             adapter = adapterProtocols
         }
 
-        // ТЕСТОВЫЙ КОД
-        val list: List<ProtocolDbEntity> = listOf(
-            ProtocolDbEntity(1,"Roman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"grege", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rosggsegman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rsegsergoman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"esagagre", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Roman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"grege", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rosggsegman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rsegsergoman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"esagagre", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Roman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"grege", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rosggsegman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rsegsergoman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"esagagre", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Roman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"grege", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rosggsegman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rsegsergoman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"esagagre", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Roman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"grege", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rosggsegman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rsegsergoman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"esagagre", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Roman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"grege", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rosggsegman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"Rsegsergoman", "09.02.2023", "22:13", ""),
-            ProtocolDbEntity(1,"esagagre", "09.02.2023", "22:13", ""),
-            )
-        adapterProtocols.protocols = list
-        // ТЕСТОВЫЙ КОД
 
+        vm.send(GetProtocolsEvent())
 
+        vm.protocolsLive.observe(requireActivity()) { listProtocols ->
+            adapterProtocols.protocols = listProtocols
+        }
 
 
 

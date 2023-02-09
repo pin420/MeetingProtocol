@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.pinkin.datasource.Room.Entities.ProtocolDbEntity
+import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.meetingprotocol.databinding.ItemMeetBinding
 
 class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
 
-    var protocols: List<ProtocolDbEntity> = emptyList()
+    var protocols: List<Protocol> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
         set(newValue) {
             field = newValue
@@ -34,6 +34,7 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
             meetTitle.text = protocol.name
             meetDate.text = protocol.date
             meetTime.text = protocol.time
+            meetProtocol.text = protocol.protocol
         }
 
     }

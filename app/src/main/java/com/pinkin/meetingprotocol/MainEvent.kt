@@ -2,6 +2,8 @@ package com.pinkin.meetingprotocol
 
 interface MainEvent
 
+class GetProtocolsEvent : MainEvent
+
 class SaveProtocolEvent : MainEvent {
 
     private var name: String = ""

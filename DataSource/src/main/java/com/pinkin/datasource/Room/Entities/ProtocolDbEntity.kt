@@ -4,6 +4,7 @@ package com.pinkin.datasource.Room.Entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.pinkin.businesslogic.Model.Protocol
 
 
 @Entity(tableName = "protocols")
@@ -15,6 +16,14 @@ data class ProtocolDbEntity(
     @ColumnInfo(name = "protocol") val protocol: String
 ) {
 
+    fun toProtocol() = Protocol(
+        id = id,
+        name = name,
+        date = date,
+        time = time,
+        protocol = protocol
+    )
+
     companion object {
         fun fromProtocolDbEntity(nameData: String, dateData: String, timeData: String, protocolData: String) = ProtocolDbEntity(
             id = 0, // SQLite generates identifier automatically if ID = 0
@@ -23,6 +32,8 @@ data class ProtocolDbEntity(
             time = timeData,
             protocol = protocolData
         )
+
+
     }
 }
 

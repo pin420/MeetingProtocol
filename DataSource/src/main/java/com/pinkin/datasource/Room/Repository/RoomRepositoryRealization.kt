@@ -1,5 +1,7 @@
 package com.pinkin.datasource.Room.Repository
 
+import android.util.Log
+import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.businesslogic.Repository.RoomRepository
 import com.pinkin.datasource.Room.Dao.ProtocolsDao
 import com.pinkin.datasource.Room.Entities.ProtocolDbEntity
@@ -25,6 +27,18 @@ class RoomRepositoryRealization(
         GlobalScope.launch {
             protocolsDao.setProtocol(entity)
         }
+    }
+
+    override fun getProtocols(): List<Protocol> {
+
+        val protocolsDB = protocolsDao.giveProtocols()
+        val protocols: MutableList<Protocol> = mutableListOf()
+
+        for (protocol in protocolsDB) {
+            protocols.add(protocol.toProtocol())
+        }
+
+        return protocols
     }
 }
 

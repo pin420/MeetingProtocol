@@ -30,7 +30,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Repositories.init(requireContext())
+
 
         vm = ViewModelProvider(this, MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
