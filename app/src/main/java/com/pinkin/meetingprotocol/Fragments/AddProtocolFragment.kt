@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.pinkin.datasource.Room.Repositories
 import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.SaveProtocolEvent
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
@@ -25,12 +24,12 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
     private lateinit var vm: MainViewModel
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
 
         vm = ViewModelProvider(this, MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
@@ -92,7 +91,5 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
     override fun onTimeSet(hour: Int, minute: Int) {
         vm.updateTime(hour, minute)
     }
-
-
 }
 

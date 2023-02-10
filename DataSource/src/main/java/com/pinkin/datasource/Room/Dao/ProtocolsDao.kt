@@ -13,8 +13,6 @@ interface ProtocolsDao {
     @Insert(entity = ProtocolDbEntity::class, onConflict = OnConflictStrategy.IGNORE)
     suspend fun setProtocol(protocolDbEntity: ProtocolDbEntity)
 
-
     @Query("SELECT * FROM protocols")
     fun giveProtocols(): List<ProtocolDbEntity>
-
 }

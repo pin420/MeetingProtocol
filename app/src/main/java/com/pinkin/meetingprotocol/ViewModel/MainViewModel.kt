@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.businesslogic.UseCase.GetProtocolsUseCase
 import com.pinkin.businesslogic.UseCase.SaveProtocolUseCase
-import com.pinkin.datasource.Room.Entities.ProtocolDbEntity
 import com.pinkin.meetingprotocol.GetProtocolsEvent
 import com.pinkin.meetingprotocol.MainEvent
 import com.pinkin.meetingprotocol.MainState
@@ -19,7 +18,6 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 const val TAG = "ViewModel"
-
 
 
 class MainViewModel(
@@ -37,6 +35,7 @@ class MainViewModel(
         Log.e(TAG, "VM created")
         stateLiveMutable.value = MainState("Roman", Calendar.getInstance().time, "Protocol")
     }
+
 
     @OptIn(DelicateCoroutinesApi::class)
     fun send(event: MainEvent) {
@@ -56,7 +55,6 @@ class MainViewModel(
             }
         }
     }
-
 
     fun updateDate(newDate: Date) {
         stateLiveMutable.postValue(
@@ -93,5 +91,4 @@ class MainViewModel(
         Log.e(TAG, "VM cleared")
         super.onCleared()
     }
-
 }

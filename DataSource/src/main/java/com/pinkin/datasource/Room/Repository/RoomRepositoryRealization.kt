@@ -1,6 +1,5 @@
 package com.pinkin.datasource.Room.Repository
 
-import android.util.Log
 import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.businesslogic.Repository.RoomRepository
 import com.pinkin.datasource.Room.Dao.ProtocolsDao

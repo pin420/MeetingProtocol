@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.pinkin.datasource.Room.Entities.ProtocolDbEntity
-import com.pinkin.datasource.Room.Repositories
 import com.pinkin.meetingprotocol.Adapter.Adapter
 import com.pinkin.meetingprotocol.GetProtocolsEvent
 import com.pinkin.meetingprotocol.R
@@ -18,11 +15,12 @@ import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.FragmentMainBinding
 import com.pinkin.meetingprotocol.navigator
-import java.text.SimpleDateFormat
+
 
 class MainFragment : Fragment() {
 
     private lateinit var vm: MainViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,12 +28,10 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-
         vm = ViewModelProvider(this, MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
-        val binding = FragmentMainBinding.inflate(inflater, container, false)
 
+        val binding = FragmentMainBinding.inflate(inflater, container, false)
 
         val adapterProtocols = Adapter()
         val linearLayoutManager = LinearLayoutManager(requireContext())
@@ -44,16 +40,11 @@ class MainFragment : Fragment() {
             adapter = adapterProtocols
         }
 
-
         vm.send(GetProtocolsEvent())
 
         vm.protocolsLive.observe(requireActivity()) { listProtocols ->
             adapterProtocols.protocols = listProtocols
         }
-
-
-
-
 
         binding.addProtocol.setOnClickListener {
 
@@ -76,8 +67,6 @@ class MainFragment : Fragment() {
                 }
             }
         }
-
-
 
         return binding.root
     }

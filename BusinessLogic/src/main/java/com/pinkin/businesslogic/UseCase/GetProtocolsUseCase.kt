@@ -5,7 +5,6 @@ import com.pinkin.businesslogic.Repository.RoomRepository
 
 class GetProtocolsUseCase(private val repository: RoomRepository) {
 
-
     fun execute(): List<Protocol> {
 
         return repository.getProtocols()

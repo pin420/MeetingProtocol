@@ -9,7 +9,4 @@ class SaveProtocolUseCase(private val repository: RoomRepository) {
 
         repository.saveProtocol(name, dateTime, protocol)
     }
-
-
-
 }

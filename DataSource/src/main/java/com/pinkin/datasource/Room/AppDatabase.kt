@@ -15,5 +15,4 @@ import com.pinkin.datasource.Room.Entities.ProtocolDbEntity
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getProtocolsDao(): ProtocolsDao
-
 }

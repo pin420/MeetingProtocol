@@ -1,6 +1,5 @@
 package com.pinkin.datasource.Room.Entities
 
-
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -32,8 +31,6 @@ data class ProtocolDbEntity(
             time = timeData,
             protocol = protocolData
         )
-
-
     }
 }
 
