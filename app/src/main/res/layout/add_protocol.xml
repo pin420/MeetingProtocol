@@ -47,12 +47,14 @@
 
             <EditText
                 android:id="@+id/editTextFirstName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:hint="Роман Пинкин"
-                android:minHeight="48dp"
+                android:hint="Сергей Кузнецов"
                 android:inputType="textCapWords|textPersonName"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textViewFirstNameTitle"
                 app:layout_constraintTop_toBottomOf="@+id/textViewFirstNameTitle" />
 
@@ -81,10 +83,11 @@
                 android:id="@+id/textViewTimeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Время"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/buttonChanceDate"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buttonChanceDate" />
 
             <TextView
@@ -101,24 +104,26 @@
                 android:id="@+id/buttonChanceDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:text="Изменить"
-                app:layout_constraintStart_toStartOf="@+id/textViewDateTitle"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDateTitle" />
+                app:layout_constraintStart_toEndOf="@+id/textViewDate"
+                app:layout_constraintTop_toBottomOf="@+id/editTextFirstName" />
 
             <Button
                 android:id="@+id/buttonChanceTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:text="Изменить"
-                app:layout_constraintStart_toStartOf="@+id/textViewTimeTitle"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTimeTitle" />
+                app:layout_constraintStart_toEndOf="@+id/textViewTime"
+                app:layout_constraintTop_toBottomOf="@+id/buttonChanceDate" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -128,10 +133,12 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textProtocol"
-                    android:inputType="text|textMultiLine|textCapSentences"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Протокол" />
+                    android:gravity="top"
+                    android:hint="Протокол"
+                    android:inputType="text|textMultiLine|textCapSentences"
+                    android:minHeight="500dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
