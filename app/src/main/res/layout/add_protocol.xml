@@ -18,7 +18,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="snap|scroll|enterAlways"
+                app:layout_scrollFlags="enterAlways"
 
                 />
 
@@ -125,7 +125,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +137,7 @@
                     android:gravity="top"
                     android:hint="Протокол"
                     android:inputType="text|textMultiLine|textCapSentences"
-                    android:minHeight="500dp" />
+                    android:minHeight="100dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
