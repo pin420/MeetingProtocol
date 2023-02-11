@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.meetingprotocol.Adapter.Adapter
+import com.pinkin.meetingprotocol.Adapter.Listener
 import com.pinkin.meetingprotocol.GetProtocolsEvent
 import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
@@ -33,7 +35,18 @@ class MainFragment : Fragment() {
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        val adapterProtocols = Adapter()
+        val adapterProtocols = Adapter(object : Listener {
+
+            override fun choiceItem(protocol: Protocol) {
+                Toast.makeText(context,
+                    "${protocol.id}" +
+                        " ${protocol.name}" +
+                        " pressed",
+                        Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        )
         val linearLayoutManager = LinearLayoutManager(requireContext())
         binding.meetsRecyclerView.apply {
             layoutManager = linearLayoutManager
