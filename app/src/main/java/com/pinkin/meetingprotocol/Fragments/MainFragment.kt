@@ -17,6 +17,7 @@ import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.FragmentMainBinding
 import com.pinkin.meetingprotocol.navigator
+import java.text.SimpleDateFormat
 
 
 class MainFragment : Fragment() {
@@ -30,7 +31,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        vm = ViewModelProvider(this, MainViewModelFactory(requireContext()))[MainViewModel::class.java]
+        vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
@@ -43,6 +44,13 @@ class MainFragment : Fragment() {
                         " ${protocol.name}" +
                         " pressed",
                         Toast.LENGTH_SHORT).show()
+
+
+                SimpleDateFormat("dd.MM.yyyy").parse(protocol.date)?.let { vm.updateDate(it) }
+                val (Hour, Minute) = protocol.time.split(":").map { it.toInt() }
+                vm.updateTime(Hour, Minute)
+
+                navigator().showEditProtocol(protocol)
             }
         }
 
