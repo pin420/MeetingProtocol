@@ -76,7 +76,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
             }
         }
 
-        vm.stateLive.observe(requireActivity()) {
+        vm.stateLive.observe(viewLifecycleOwner) {
             binding.textViewDate.text = SimpleDateFormat("dd.MM.yyyy").format(it.dateTime)
             binding.textViewTime.text = SimpleDateFormat("HH:mm").format(it.dateTime)
         }

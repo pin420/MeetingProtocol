@@ -42,7 +42,7 @@ class MainFragment : Fragment() {
 
         vm.send(GetProtocolsEvent())
 
-        vm.protocolsLive.observe(requireActivity()) { listProtocols ->
+        vm.protocolsLive.observe(viewLifecycleOwner) { listProtocols ->
             adapterProtocols.protocols = listProtocols
         }
 
