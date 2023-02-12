@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pinkin.businesslogic.Model.Protocol
+import com.pinkin.meetingprotocol.DeleteProtocolEvent
 import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.SaveProtocolEvent
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
@@ -68,7 +69,11 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                     }
                     R.id.app_bar_delete -> {
 
+                        val deleteProtocolEvent = DeleteProtocolEvent()
+                        deleteProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
+                        vm.send(deleteProtocolEvent)
 
+                        getActivity()?.onBackPressed();
                         true
                     }
                     R.id.app_bar_share -> {

@@ -5,6 +5,19 @@ interface MainEvent
 
 class GetProtocolsEvent : MainEvent
 
+class DeleteProtocolEvent : MainEvent {
+
+    private var id: Int = 0
+
+    fun setId(data: Int) {
+        id = data
+    }
+
+    fun getId(): Int {
+        return id
+    }
+}
+
 class SaveProtocolEvent : MainEvent {
 
     private var id: Int = 0

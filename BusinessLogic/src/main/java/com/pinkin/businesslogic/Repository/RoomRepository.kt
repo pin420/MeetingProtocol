@@ -8,4 +8,6 @@ interface RoomRepository {
     fun saveProtocol(id: Int, name: String, dateTime: Date, protocol: String)
 
     fun getProtocols(): List<Protocol>
+
+    fun deleteProtocol(id: Int)
 }

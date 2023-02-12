@@ -38,6 +38,14 @@ class RoomRepositoryRealization(
 
         return protocols
     }
+
+    override fun deleteProtocol(id: Int) {
+
+        val entity = protocolsDao.giveProtocol(id)
+
+        protocolsDao.deleteProtocol(entity)
+
+    }
 }
 
 
