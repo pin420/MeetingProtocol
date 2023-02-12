@@ -12,7 +12,7 @@ interface ProtocolsDao {
     @Insert(entity = ProtocolDbEntity::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun setProtocol(protocolDbEntity: ProtocolDbEntity)
 
-    @Query("SELECT * FROM protocols")
+    @Query("SELECT * FROM protocols ORDER BY protocols.date DESC, protocols.time DESC")
     fun giveProtocols(): List<ProtocolDbEntity>
 
     @Query("DELETE FROM protocols WHERE protocols.id = :id")
