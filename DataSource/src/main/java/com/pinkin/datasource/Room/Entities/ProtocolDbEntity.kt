@@ -23,8 +23,8 @@ data class ProtocolDbEntity(
     )
 
     companion object {
-        fun fromProtocolDbEntity(nameData: String, dateData: String, timeData: String, protocolData: String) = ProtocolDbEntity(
-            id = 0, // SQLite generates identifier automatically if ID = 0
+        fun fromProtocolDbEntity(id: Int, nameData: String, dateData: String, timeData: String, protocolData: String) = ProtocolDbEntity(
+            id = id, // SQLite generates identifier automatically if ID = 0
             name = nameData,
             date = dateData,
             time = timeData,

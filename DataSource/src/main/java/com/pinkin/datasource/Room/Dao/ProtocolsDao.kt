@@ -9,7 +9,7 @@ import com.pinkin.datasource.Room.Entities.ProtocolDbEntity
 @Dao
 interface ProtocolsDao {
 
-    @Insert(entity = ProtocolDbEntity::class, onConflict = OnConflictStrategy.IGNORE)
+    @Insert(entity = ProtocolDbEntity::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun setProtocol(protocolDbEntity: ProtocolDbEntity)
 
     @Query("SELECT * FROM protocols")

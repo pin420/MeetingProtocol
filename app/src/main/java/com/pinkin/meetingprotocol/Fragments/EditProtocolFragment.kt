@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.meetingprotocol.R
+import com.pinkin.meetingprotocol.SaveProtocolEvent
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.FragmentProtocolBinding
@@ -56,10 +57,11 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                     R.id.app_bar_done -> {
                         Toast.makeText(context, "Save button pressed", Toast.LENGTH_SHORT).show()
 
-//                        val saveProtocolEvent = SaveProtocolEvent()
-//                        saveProtocolEvent.setName(binding.editTextFirstName.text.toString())
-//                        saveProtocolEvent.setProtocol(binding.textProtocol.text.toString())
-//                        vm.send(saveProtocolEvent)
+                        val saveProtocolEvent = SaveProtocolEvent()
+                        saveProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
+                        saveProtocolEvent.setName(binding.editTextFirstName.text.toString())
+                        saveProtocolEvent.setProtocol(binding.textProtocol.text.toString())
+                        vm.send(saveProtocolEvent)
 
                         getActivity()?.onBackPressed();
                         true

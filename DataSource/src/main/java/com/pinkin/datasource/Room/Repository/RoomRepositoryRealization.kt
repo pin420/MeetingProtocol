@@ -13,9 +13,10 @@ class RoomRepositoryRealization(
 ) : RoomRepository {
 
     @OptIn(DelicateCoroutinesApi::class)
-    override fun saveProtocol(name: String, dateTime: Date, protocol: String) {
+    override fun saveProtocol(id: Int, name: String, dateTime: Date, protocol: String) {
 
         val entity = ProtocolDbEntity.fromProtocolDbEntity(
+            id,
             name,
             SimpleDateFormat("dd.MM.yyyy").format(dateTime),
             SimpleDateFormat("HH:mm").format(dateTime),

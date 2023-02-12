@@ -7,9 +7,17 @@ class GetProtocolsEvent : MainEvent
 
 class SaveProtocolEvent : MainEvent {
 
+    private var id: Int = 0
     private var name: String = ""
     private var protocol: String = ""
 
+    fun setId(data: Int) {
+        id = data
+    }
+
+    fun getId(): Int {
+        return id
+    }
 
     fun setName(data: String) {
         name = data

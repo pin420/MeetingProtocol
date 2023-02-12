@@ -67,6 +67,8 @@ class MainFragment : Fragment() {
 
         binding.addProtocol.setOnClickListener {
 
+            vm.updateDateTime()
+
             navigator().showAddProtocol()
         }
 

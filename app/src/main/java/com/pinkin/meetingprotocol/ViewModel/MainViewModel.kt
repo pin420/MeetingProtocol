@@ -42,6 +42,7 @@ class MainViewModel(
             when (event) {
                 is SaveProtocolEvent -> {
                     saveProtocolUseCase.execute(
+                        event.getId(),
                         event.getName(),
                         stateLiveMutable.value!!.dateTime,
                         event.getProtocol())
@@ -80,6 +81,18 @@ class MainViewModel(
                         hours = newHour
                         minutes = newMinute
                     },
+                    protocol = it.protocol
+                )
+            }
+        )
+    }
+
+    fun updateDateTime() {
+        stateLiveMutable.postValue(
+            stateLiveMutable.value?.let {
+                MainState(
+                    name = it.name,
+                    dateTime = Calendar.getInstance().time,
                     protocol = it.protocol
                 )
             }
