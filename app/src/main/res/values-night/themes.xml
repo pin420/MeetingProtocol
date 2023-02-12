@@ -2,10 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.MeetingProtocol" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorPrimary">#1976D2</item>
+        <item name="colorPrimaryDark">#303F9F</item>
         <item name="colorAccent">@color/teal_200</item>
-        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:statusBarColor">#282828</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

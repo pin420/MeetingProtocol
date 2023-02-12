@@ -45,7 +45,13 @@ class MainActivity : AppCompatActivity(), Navigator {
     private fun launchFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
-            .addToBackStack(null)
+            .setCustomAnimations(
+                R.anim.front_enter,
+                R.anim.back_enter,
+                R.anim.back_exit,
+                R.anim.front_exit,
+            )
+        .addToBackStack(null)
             .replace(R.id.fragmentContainer, fragment)
             .commit()
     }
