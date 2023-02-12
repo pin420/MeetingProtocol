@@ -45,8 +45,8 @@ class MainActivity : AppCompatActivity(), Navigator {
             .beginTransaction()
             .setCustomAnimations(
                 R.anim.front_enter,
-                R.anim.back_enter,
-                R.anim.back_exit,
+                R.anim.back,
+                R.anim.back,
                 R.anim.front_exit,)
             .addToBackStack(null)
             .replace(R.id.fragmentContainer, fragment)
