@@ -1,9 +1,10 @@
 package com.pinkin.meetingprotocol.Fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -66,22 +67,62 @@ class MainFragment : Fragment() {
             navigator().showAddProtocol()
         }
 
-        binding.toolbar.apply {
 
-            inflateMenu(R.menu.main_toolbar)
-            setTitle(R.string.app_name)
+        binding.toolbar.setTitle(R.string.app_name)
 
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.searchOption_all,R.id.searchOption_mans,R.id.searchOption_protocol -> {
-                        it.setChecked(true)
-                        true
-                    }
-                    else -> false
-                }
-            }
-        }
+
+        (requireContext() as AppCompatActivity?)?.setSupportActionBar(binding.toolbar)
 
         return binding.root
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        inflater.inflate(R.menu.main_toolbar,menu)
+
+        val searchView = menu.findItem(R.id.app_bar_search).actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                Toast.makeText(requireContext(),"sub",Toast.LENGTH_SHORT).show()
+                return true
+            }
+            override fun onQueryTextChange(p0: String?): Boolean {
+                Toast.makeText(requireContext(),"update",Toast.LENGTH_SHORT).show()
+                return true
+            }
+        })
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            when (item.itemId) {
+                R.id.searchOption_all -> {
+                    item.isChecked = true
+                    vm.setSearchOption(0)
+                    return true
+                }
+                R.id.searchOption_mans -> {
+                    item.isChecked = true
+                    vm.setSearchOption(1)
+                    return true
+                }
+                R.id.searchOption_protocol -> {
+                    item.isChecked = true
+                    vm.setSearchOption(2)
+                    return true
+                }
+                else -> return false
+            }
+
+    }
 }
+
+
+
+

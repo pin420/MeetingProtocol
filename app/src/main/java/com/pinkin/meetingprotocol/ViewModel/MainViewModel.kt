@@ -29,6 +29,8 @@ class MainViewModel(
     private val protocolsLiveMutable = MutableLiveData<List<Protocol>>()
     val protocolsLive: LiveData<List<Protocol>> = protocolsLiveMutable
 
+    private var searchOption = 0
+
     init {
         Log.e(TAG, "VM created")
         stateLiveMutable.value = MainState("Roman", Calendar.getInstance().time, "Protocol")
@@ -101,6 +103,14 @@ class MainViewModel(
                 )
             }
         )
+    }
+
+    fun setSearchOption(data: Int) {
+        searchOption = data
+    }
+
+    fun getSearchOption(): Int {
+        return searchOption
     }
 
     override fun onCleared() {
