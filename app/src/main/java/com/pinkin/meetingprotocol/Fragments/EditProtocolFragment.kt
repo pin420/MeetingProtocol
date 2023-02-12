@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pinkin.businesslogic.Model.Protocol
@@ -59,7 +58,6 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.app_bar_done -> {
-                        Toast.makeText(context, "Save button pressed", Toast.LENGTH_SHORT).show()
 
                         val saveProtocolEvent = SaveProtocolEvent()
                         saveProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
@@ -100,8 +98,9 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                             type = "text/plain"
                             putExtra(Intent.EXTRA_TEXT,
                                         "Дата:${binding.textViewDate.text} ${binding.textViewTime.text}\n" +
-                                "Участники:${binding.editTextFirstName.text}\n" +
-                                    "Протокол:${binding.textProtocol.text}"
+                                "Участники:\n${binding.editTextFirstName.text}\n" +
+                                    "Протокол:\n${binding.textProtocol.text}\n\n" +
+                                                "Сделано с помощью приложения Meeting protocol"
                                 )
                         }.also { intent ->
                             startActivity(Intent.createChooser(intent, "Share"))

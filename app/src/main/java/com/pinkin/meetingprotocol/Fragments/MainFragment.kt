@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,11 +36,6 @@ class MainFragment : Fragment() {
         val adapterProtocols = Adapter(object : Listener {
 
             override fun choiceItem(protocol: Protocol) {
-                Toast.makeText(context,
-                    "${protocol.id}" +
-                        " ${protocol.name}" +
-                        " pressed",
-                        Toast.LENGTH_SHORT).show()
 
                 SimpleDateFormat("dd.MM.yyyy").parse(protocol.date)?.let {date ->
                     vm.updateDate(date) }
@@ -81,7 +75,6 @@ class MainFragment : Fragment() {
                 when (it.itemId) {
                     R.id.searchOption_all,R.id.searchOption_mans,R.id.searchOption_protocol -> {
                         it.setChecked(true)
-                        Toast.makeText(context, "${it.title} pressed", Toast.LENGTH_SHORT).show()
                         true
                     }
                     else -> false

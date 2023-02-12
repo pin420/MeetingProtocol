@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pinkin.meetingprotocol.R
@@ -47,7 +46,6 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.app_bar_done -> {
-                        Toast.makeText(context, "Save button pressed", Toast.LENGTH_SHORT).show()
 
                         val saveProtocolEvent = SaveProtocolEvent()
                         saveProtocolEvent.setName(binding.editTextFirstName.text.toString())
