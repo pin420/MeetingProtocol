@@ -2,6 +2,7 @@ package com.pinkin.meetingprotocol.Fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface.OnClickListener
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -95,6 +96,16 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                     }
                     R.id.app_bar_share -> {
 
+                        Intent(Intent.ACTION_SEND).apply {
+                            type = "text/plain"
+                            putExtra(Intent.EXTRA_TEXT,
+                                        "Дата:${binding.textViewDate.text} ${binding.textViewTime.text}\n" +
+                                "Участники:${binding.editTextFirstName.text}\n" +
+                                    "Протокол:${binding.textProtocol.text}"
+                                )
+                        }.also { intent ->
+                            startActivity(Intent.createChooser(intent, "Share"))
+                        }
 
                         true
                     }
@@ -102,6 +113,8 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                 }
             }
         }
+
+
 
         binding.buttonChanceDate.setOnClickListener {
             DatePickerFragment.newInstance(vm.stateLive.value!!.dateTime).apply {
