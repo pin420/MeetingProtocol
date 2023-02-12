@@ -41,9 +41,7 @@ class RoomRepositoryRealization(
 
     override fun deleteProtocol(id: Int) {
 
-        val entity = protocolsDao.giveProtocol(id)
-
-        protocolsDao.deleteProtocol(entity)
+        protocolsDao.deleteProtocol(id)
 
     }
 }
