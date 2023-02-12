@@ -1,5 +1,7 @@
 package com.pinkin.meetingprotocol.Fragments
 
+import android.app.AlertDialog
+import android.content.DialogInterface.OnClickListener
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -69,11 +71,26 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                     }
                     R.id.app_bar_delete -> {
 
-                        val deleteProtocolEvent = DeleteProtocolEvent()
-                        deleteProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
-                        vm.send(deleteProtocolEvent)
+                        val builder = AlertDialog.Builder(requireContext())
+                        builder.setMessage("Вы уверенны что хотите удалить протокол?")
+                        builder.setCancelable(true)
 
-                        getActivity()?.onBackPressed();
+                        builder.setPositiveButton(
+                            "Да",
+                            OnClickListener { dialog, id ->
+                                val deleteProtocolEvent = DeleteProtocolEvent()
+                                deleteProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
+                                vm.send(deleteProtocolEvent)
+
+                                getActivity()?.onBackPressed();
+                                dialog.cancel() })
+
+                        builder.setNegativeButton(
+                            "Нет",
+                            OnClickListener { dialog, id -> dialog.cancel() })
+
+                        builder.create().show()
+
                         true
                     }
                     R.id.app_bar_share -> {
