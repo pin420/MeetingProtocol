@@ -19,7 +19,6 @@ import java.util.*
 
 const val TAG = "ViewModel"
 
-
 class MainViewModel(
     private val saveProtocolUseCase: SaveProtocolUseCase,
     private val getProtocolsUseCase: GetProtocolsUseCase,

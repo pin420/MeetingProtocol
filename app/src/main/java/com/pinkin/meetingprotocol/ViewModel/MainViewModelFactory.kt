@@ -7,7 +7,6 @@ import com.pinkin.businesslogic.UseCase.GetProtocolsUseCase
 import com.pinkin.businesslogic.UseCase.SaveProtocolUseCase
 import com.pinkin.datasource.Room.Repositories
 
-
 class MainViewModelFactory(context: Context) : ViewModelProvider.Factory {
 
     private val roomRepository by lazy(LazyThreadSafetyMode.NONE) {

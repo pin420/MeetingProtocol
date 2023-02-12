@@ -11,7 +11,7 @@ import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
-import com.pinkin.meetingprotocol.databinding.AddProtocolBinding
+import com.pinkin.meetingprotocol.databinding.FragmentProtocolBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,7 +22,6 @@ private const val REQUEST_DATETIME = 0
 private const val ARG_PROTOCOL_ID = "arg_protocol_id"
 private const val ARG_PROTOCOL_NAME = "arg_protocol_name"
 private const val ARG_PROTOCOL = "arg_protocol"
-
 
 class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
 
@@ -37,7 +36,8 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
 
         vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
-        val binding = AddProtocolBinding.inflate(inflater, container, false)
+        val binding = FragmentProtocolBinding.inflate(inflater, container, false)
+
 
         binding.editTextFirstName.append(arguments?.getSerializable(ARG_PROTOCOL_NAME) as String)
         binding.textProtocol.append(arguments?.getSerializable(ARG_PROTOCOL) as String)
@@ -70,8 +70,6 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                         true
                     }
                     R.id.app_bar_share -> {
-
-
 
 
                         true

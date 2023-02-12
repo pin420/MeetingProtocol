@@ -1,6 +1,5 @@
 package com.pinkin.meetingprotocol
 
-import android.R.id
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -10,7 +9,6 @@ import com.pinkin.meetingprotocol.Fragments.AddProtocolFragment
 import com.pinkin.meetingprotocol.Fragments.EditProtocolFragment
 import com.pinkin.meetingprotocol.Fragments.MainFragment
 import com.pinkin.meetingprotocol.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity(), Navigator {
 
@@ -49,9 +47,8 @@ class MainActivity : AppCompatActivity(), Navigator {
                 R.anim.front_enter,
                 R.anim.back_enter,
                 R.anim.back_exit,
-                R.anim.front_exit,
-            )
-        .addToBackStack(null)
+                R.anim.front_exit,)
+            .addToBackStack(null)
             .replace(R.id.fragmentContainer, fragment)
             .commit()
     }

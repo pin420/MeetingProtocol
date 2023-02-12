@@ -11,14 +11,13 @@ import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.SaveProtocolEvent
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
-import com.pinkin.meetingprotocol.databinding.AddProtocolBinding
+import com.pinkin.meetingprotocol.databinding.FragmentProtocolBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 private const val DIALOG_DATE = "DialogDate"
 private const val DIALOG_TIME = "DialogTime"
 private const val REQUEST_DATETIME = 0
-
 
 class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
 
@@ -33,7 +32,8 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
         vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
-        val binding = AddProtocolBinding.inflate(inflater, container, false)
+        val binding = FragmentProtocolBinding.inflate(inflater, container, false)
+
 
         binding.toolbar.apply {
             inflateMenu(R.menu.add_protocol_toolbar)

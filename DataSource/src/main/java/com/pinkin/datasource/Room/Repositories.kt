@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.pinkin.businesslogic.Repository.RoomRepository
 import com.pinkin.datasource.Room.Repository.RoomRepositoryRealization
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 
 object Repositories {
 
@@ -18,12 +16,11 @@ object Repositories {
             .build()
     }
 
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 
     // --- repositories
 
     val roomRepository: RoomRepository by lazy {
-        RoomRepositoryRealization(database.getProtocolsDao(), ioDispatcher)
+        RoomRepositoryRealization(database.getProtocolsDao())
     }
 
     /**

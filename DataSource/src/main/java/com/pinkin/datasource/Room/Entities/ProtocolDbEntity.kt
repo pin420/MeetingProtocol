@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.pinkin.businesslogic.Model.Protocol
 
-
 @Entity(tableName = "protocols")
 data class ProtocolDbEntity(
     @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) val id: Int,

@@ -44,13 +44,13 @@ class Adapter(
         }
     }
 
-
-    class ViewHolder(val binding: ItemMeetBinding) : RecyclerView.ViewHolder(binding.root)
-
     override fun onClick(v: View) {
         val protocol = v.tag as Protocol
         listener.choiceItem(protocol)
     }
+
+
+    class ViewHolder(val binding: ItemMeetBinding) : RecyclerView.ViewHolder(binding.root)
 }
 
 interface Listener {

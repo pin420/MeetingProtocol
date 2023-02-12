@@ -8,10 +8,8 @@ import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class RoomRepositoryRealization(
-    private val protocolsDao: ProtocolsDao,
-    private val ioDispatcher: CoroutineDispatcher
+    private val protocolsDao: ProtocolsDao
 ) : RoomRepository {
 
     @OptIn(DelicateCoroutinesApi::class)

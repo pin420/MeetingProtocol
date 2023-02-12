@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.pinkin.datasource.Room.Entities.ProtocolDbEntity
 
-
 @Dao
 interface ProtocolsDao {
 
