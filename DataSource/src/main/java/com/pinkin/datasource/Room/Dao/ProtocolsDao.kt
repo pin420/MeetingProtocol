@@ -18,4 +18,21 @@ interface ProtocolsDao {
     @Query("DELETE FROM protocols WHERE protocols.id = :id")
     fun deleteProtocol(id: Int)
 
+
+    @Query( "SELECT * FROM protocols " +
+            "WHERE protocols.name LIKE :query ORDER BY protocols.date DESC, protocols.time DESC")
+    fun getSearchByName(query: String): List<ProtocolDbEntity>
+
+
+    @Query( "SELECT * FROM protocols " +
+            "WHERE protocols.protocol LIKE :query ORDER BY protocols.date DESC, protocols.time DESC")
+    fun getSearchByProtocol(query: String): List<ProtocolDbEntity>
+
+    @Query( "SELECT * FROM protocols " +
+            "WHERE protocols.name LIKE :query " +
+            "OR protocols.date LIKE :query " +
+            "OR protocols.time LIKE :query " +
+            "OR protocols.protocol LIKE :query ORDER BY protocols.date DESC, protocols.time DESC")
+    fun getSearch(query: String): List<ProtocolDbEntity>
+
 }

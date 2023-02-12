@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.businesslogic.UseCase.DeleteProtocolUseCase
 import com.pinkin.businesslogic.UseCase.GetProtocolsUseCase
+import com.pinkin.businesslogic.UseCase.GetSearchProtocolsUseCase
 import com.pinkin.businesslogic.UseCase.SaveProtocolUseCase
 import com.pinkin.meetingprotocol.*
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -21,6 +22,7 @@ class MainViewModel(
     private val saveProtocolUseCase: SaveProtocolUseCase,
     private val getProtocolsUseCase: GetProtocolsUseCase,
     private val deleteProtocolUseCase: DeleteProtocolUseCase,
+    private val getSearchProtocolsUseCase: GetSearchProtocolsUseCase
 ): ViewModel() {
 
     private val stateLiveMutable = MutableLiveData<MainState>()
@@ -57,6 +59,12 @@ class MainViewModel(
                     GlobalScope.launch {
                         deleteProtocolUseCase.execute(event.getId())
                     }
+                }
+                is GetSearchProtocolsEvent -> {
+                    GlobalScope.launch {
+                        protocolsLiveMutable.postValue(getSearchProtocolsUseCase.execute(event.getQuery(), getSearchOption()))
+                    }
+
                 }
             }
         }

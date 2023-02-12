@@ -5,6 +5,20 @@ interface MainEvent
 
 class GetProtocolsEvent : MainEvent
 
+class GetSearchProtocolsEvent : MainEvent {
+
+    private var query: String = ""
+
+    fun setQuery(data: String){
+        query = data
+    }
+
+    fun getQuery(): String {
+        return query
+    }
+
+}
+
 class DeleteProtocolEvent : MainEvent {
 
     private var id: Int = 0

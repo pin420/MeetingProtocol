@@ -44,6 +44,28 @@ class RoomRepositoryRealization(
         protocolsDao.deleteProtocol(id)
 
     }
+
+    override fun getSearchProtocols(query: String, searchOption: Int): List<Protocol> {
+
+        val protocolsDB = when (searchOption) {
+            0 -> protocolsDao.getSearchByName(query)
+            1 -> protocolsDao.getSearchByProtocol(query)
+            2 -> protocolsDao.getSearch(query)
+            else -> {
+                protocolsDao.giveProtocols()
+            }
+        }
+
+        val protocols: MutableList<Protocol> = mutableListOf()
+
+        for (protocol in protocolsDB) {
+            protocols.add(protocol.toProtocol())
+        }
+
+        return protocols
+
+
+    }
 }
 
 
