@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">Meeting protocol</string>
+    <string name="app_name" translatable="false">Meeting protocol</string>
+    <string name="search_option_mans">Find by people</string>
+    <string name="search_option_protocol">Find by protocol</string>
+    <string name="search_option_all">Any match</string>
+    <string name="new_protocol">New protocol</string>
+    <string name="edit_protocol">Edit protocol</string>
+    <string name="first_name_last_name">First name and Last name</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="protocol">Protocol</string>
+    <string name="change">Change</string>
+    <string name="share">Share</string>
+    <string name="delete_dialog">Are you sure you want to delete the protocol?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save_button">Save</string>
+    <string name="share_button">Share</string>
+    <string name="delete_button">Delete</string>
+    <string name="template_share">Date:%1$s %2$s\nParticipants:\n%3$s\nProtocol:\n%4$s\n\nMade by Meeting protocol app</string>
+    <string name="name_hint">Liam Smith</string>
+
 </resources>

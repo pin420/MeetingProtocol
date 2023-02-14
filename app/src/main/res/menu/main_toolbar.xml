@@ -13,18 +13,18 @@
 
         <item
             android:id="@+id/searchOption_mans"
-            android:title="Поиск по людям"
+            android:title="@string/search_option_mans"
             app:showAsAction="never"
             android:checked="true" />
 
         <item
             android:id="@+id/searchOption_protocol"
-            android:title="Поиск по протоколу"
+            android:title="@string/search_option_protocol"
             app:showAsAction="never" />
 
         <item
             android:id="@+id/searchOption_all"
-            android:title="Любое совпадение"
+            android:title="@string/search_option_all"
             app:showAsAction="never" />
     </group>
 </menu>

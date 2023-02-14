@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Протокол встреч</string>
+    <string name="search_option_mans">Поиск по людям</string>
+    <string name="search_option_protocol">Поиск по людям</string>
+    <string name="search_option_all">Любое совпадение</string>
+    <string name="new_protocol">Новый протокол</string>
+    <string name="edit_protocol">Изменить протокол</string>
+    <string name="first_name_last_name">Имя Фамилия</string>
+    <string name="date">Дата</string>
+    <string name="time">Время</string>
+    <string name="protocol">Протокол</string>
+    <string name="change">Изменить</string>
+    <string name="share">Поделиться протоколом</string>
+    <string name="delete_dialog">Вы уверены что хотите удалить протокол?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="save_button">Сохранить</string>
+    <string name="share_button">Поделиться</string>
+    <string name="delete_button">Удалить</string>
+    <string name="template_share">Дата:%1$s %2$s\nУчастники:\n%3$s\nПротокол:\n%4$s\n\nСделано с помощью приложения Meeting protocol</string>
+    <string name="name_hint">Сергей Кузнецов</string>
+
+</resources>

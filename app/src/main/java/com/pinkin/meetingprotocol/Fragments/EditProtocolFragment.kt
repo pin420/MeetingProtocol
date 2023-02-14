@@ -48,7 +48,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
 
         binding.toolbar.apply {
             inflateMenu(R.menu.edit_protocol_toolbar)
-            title = "Edit protocol"
+            setTitle(R.string.edit_protocol)
 
             setNavigationIcon(com.google.android.material.R.drawable.abc_ic_ab_back_material)
             setNavigationOnClickListener {
@@ -71,11 +71,11 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                     R.id.app_bar_delete -> {
 
                         val builder = AlertDialog.Builder(requireContext())
-                        builder.setMessage("Вы уверенны что хотите удалить протокол?")
+                        builder.setMessage(R.string.delete_dialog)
                         builder.setCancelable(true)
 
                         builder.setPositiveButton(
-                            "Да",
+                            (R.string.yes),
                             OnClickListener { dialog, id ->
                                 val deleteProtocolEvent = DeleteProtocolEvent()
                                 deleteProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
@@ -85,7 +85,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                                 dialog.cancel() })
 
                         builder.setNegativeButton(
-                            "Нет",
+                            (R.string.no),
                             OnClickListener { dialog, id -> dialog.cancel() })
 
                         builder.create().show()
@@ -97,13 +97,13 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                         Intent(Intent.ACTION_SEND).apply {
                             type = "text/plain"
                             putExtra(Intent.EXTRA_TEXT,
-                                        "Дата:${binding.textViewDate.text} ${binding.textViewTime.text}\n" +
-                                "Участники:\n${binding.editTextFirstName.text}\n" +
-                                    "Протокол:\n${binding.textProtocol.text}\n\n" +
-                                                "Сделано с помощью приложения Meeting protocol"
+
+                                getString(R.string.template_share,binding.textViewDate.text, binding.textViewTime.text,
+                                        binding.editTextFirstName.text,
+                                        binding.textProtocol.text)
                                 )
                         }.also { intent ->
-                            startActivity(Intent.createChooser(intent, "Share"))
+                            startActivity(Intent.createChooser(intent, getString(R.string.share)))
                         }
 
                         true

@@ -35,7 +35,7 @@ class MainViewModel(
 
     init {
         Log.e(TAG, "VM created")
-        stateLiveMutable.value = MainState("Roman", Calendar.getInstance().time, "Protocol")
+        stateLiveMutable.value = MainState("", Calendar.getInstance().time, "")
     }
 
 
