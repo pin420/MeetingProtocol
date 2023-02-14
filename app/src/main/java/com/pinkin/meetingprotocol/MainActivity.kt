@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity(), Navigator {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_MeetingProtocol);
         super.onCreate(savedInstanceState)
 
         Repositories.init(this)

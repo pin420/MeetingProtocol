@@ -8,4 +8,9 @@
         <item name="android:statusBarColor">#1976D2</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+
+    </style>
 </resources>

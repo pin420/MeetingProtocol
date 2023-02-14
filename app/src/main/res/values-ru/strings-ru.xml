@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Протокол встреч</string>
     <string name="search_option_mans">Поиск по людям</string>
-    <string name="search_option_protocol">Поиск по людям</string>
+    <string name="search_option_protocol">Поиск по протоколу</string>
     <string name="search_option_all">Любое совпадение</string>
     <string name="new_protocol">Новый протокол</string>
     <string name="edit_protocol">Изменить протокол</string>
