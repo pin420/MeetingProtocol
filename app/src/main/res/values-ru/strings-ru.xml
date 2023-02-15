@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Протокол встреч</string>
     <string name="search_option_mans">Поиск по людям</string>
     <string name="search_option_protocol">Поиск по протоколу</string>
     <string name="search_option_all">Любое совпадение</string>
@@ -19,5 +18,4 @@
     <string name="delete_button">Удалить</string>
     <string name="template_share">Дата:%1$s %2$s\nУчастники:\n%3$s\nПротокол:\n%4$s\n\nСделано с помощью приложения Meeting protocol</string>
     <string name="name_hint">Сергей Кузнецов</string>
-
 </resources>
