@@ -32,6 +32,7 @@ class MainViewModel(
     val protocolsLive: LiveData<List<Protocol>> = protocolsLiveMutable
 
     private var searchOption = 0
+    private var searchQuery: String? = null
 
     init {
         Log.e(TAG, "VM created")
@@ -119,6 +120,14 @@ class MainViewModel(
 
     fun getSearchOption(): Int {
         return searchOption
+    }
+
+    fun setSearchQuery(data: String?) {
+        searchQuery = data
+    }
+
+    fun getSearchQuery(): String? {
+        return searchQuery
     }
 
     override fun onCleared() {

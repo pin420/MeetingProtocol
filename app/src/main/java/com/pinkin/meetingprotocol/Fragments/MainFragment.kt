@@ -2,9 +2,8 @@ package com.pinkin.meetingprotocol.Fragments
 
 import android.os.Bundle
 import android.view.*
-import android.widget.SearchView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -78,15 +77,16 @@ class MainFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
         inflater.inflate(R.menu.main_toolbar,menu)
 
-        val searchView = menu.findItem(R.id.app_bar_search).actionView as SearchView
+        val searchItem: MenuItem = menu.findItem(R.id.app_bar_search)
+        val searchView = searchItem.actionView as SearchView
 
         when(vm.getSearchOption()) {
             0 -> menu.findItem(R.id.searchOption_mans).setChecked(true)
@@ -94,26 +94,35 @@ class MainFragment : Fragment() {
             2 -> menu.findItem(R.id.searchOption_all).setChecked(true)
         }
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-            override fun onQueryTextChange(newTextQuery: String?): Boolean {
-                if (newTextQuery != null) {
-                    if(newTextQuery.isEmpty()){
-                        vm.send(GetProtocolsEvent())
-                    } else {
-                        val getSearchProtocolsEvent = GetSearchProtocolsEvent()
-                        getSearchProtocolsEvent.setQuery("%$newTextQuery%")
-                        searchView.visibility = View.VISIBLE
-                        vm.send(getSearchProtocolsEvent)
-                    }
+        searchView.apply {
+
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    setIconifiedByDefault(false)
+                    return true
                 }
+                override fun onQueryTextChange(newTextQuery: String?): Boolean {
 
+                    vm.setSearchQuery(newTextQuery)
 
-                return true
-            }
-        })
+                    if (newTextQuery != null) {
+                        if(newTextQuery.isEmpty()){
+                            vm.send(GetProtocolsEvent())
+                        } else {
+                            val getSearchProtocolsEvent = GetSearchProtocolsEvent()
+                            getSearchProtocolsEvent.setQuery("%$newTextQuery%")
+                            vm.send(getSearchProtocolsEvent)
+                        }
+                    }
+
+                    return true
+                }
+            })
+
+        }
+
+        searchView.setQuery(vm.getSearchQuery(), true)
+
     }
 
 
