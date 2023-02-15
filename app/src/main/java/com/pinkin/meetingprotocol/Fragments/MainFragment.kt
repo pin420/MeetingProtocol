@@ -57,7 +57,14 @@ class MainFragment : Fragment() {
         vm.send(GetProtocolsEvent())
 
         vm.protocolsLive.observe(viewLifecycleOwner) { listProtocols ->
-            adapterProtocols.protocols = listProtocols
+            if (listProtocols.isEmpty()) {
+                binding.meetsRecyclerView.visibility = View.GONE
+                binding.emptyRecyclerInfo.visibility = View.VISIBLE
+            } else {
+                adapterProtocols.protocols = listProtocols
+                binding.meetsRecyclerView.visibility = View.VISIBLE
+                binding.emptyRecyclerInfo.visibility = View.GONE
+            }
         }
 
         binding.addProtocol.setOnClickListener {

@@ -18,4 +18,5 @@
     <string name="delete_button">Удалить</string>
     <string name="template_share">Дата:%1$s %2$s\nУчастники:\n%3$s\nПротокол:\n%4$s\n\nСделано с помощью приложения Meeting protocol</string>
     <string name="name_hint">Сергей Кузнецов</string>
+    <string name="RecyclerIsEmpty">Ничего не было найдено.\nДобавьте протокол или измените поисковый запрос.</string>
 </resources>
