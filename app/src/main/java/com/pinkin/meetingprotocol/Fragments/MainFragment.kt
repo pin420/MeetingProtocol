@@ -127,20 +127,27 @@ class MainFragment : Fragment() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val getSearchProtocolsEvent = GetSearchProtocolsEvent()
+        getSearchProtocolsEvent.setQuery("%${vm.getSearchQuery()}%")
+
             when (item.itemId) {
                 R.id.searchOption_mans -> {
                     item.isChecked = true
                     vm.setSearchOption(0)
+                    vm.send(getSearchProtocolsEvent)
                     return true
                 }
                 R.id.searchOption_protocol -> {
                     item.isChecked = true
                     vm.setSearchOption(1)
+                    vm.send(getSearchProtocolsEvent)
                     return true
                 }
                 R.id.searchOption_all -> {
                     item.isChecked = true
                     vm.setSearchOption(2)
+                    vm.send(getSearchProtocolsEvent)
                     return true
                 }
                 else -> return false
