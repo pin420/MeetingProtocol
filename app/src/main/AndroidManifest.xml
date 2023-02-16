@@ -14,9 +14,14 @@
         android:theme="@style/splashScreenTheme"
         tools:targetApi="31">
         <activity
+            android:name=".MyAppIntro"
+            android:exported="false"
+            android:label="@string/title_activity_my_app_intro"
+            android:theme="@style/splashScreenTheme" />
+        <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

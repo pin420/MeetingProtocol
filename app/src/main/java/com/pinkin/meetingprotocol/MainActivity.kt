@@ -1,5 +1,6 @@
 package com.pinkin.meetingprotocol
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity(), Navigator {
         Repositories.init(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
+
+        val intent = Intent(this, MyAppIntro::class.java)
+        startActivity(intent)
 
         if (savedInstanceState == null) {
             supportFragmentManager

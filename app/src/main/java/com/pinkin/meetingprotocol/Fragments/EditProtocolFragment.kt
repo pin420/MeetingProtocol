@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pinkin.businesslogic.Model.Protocol
@@ -16,6 +17,9 @@ import com.pinkin.meetingprotocol.SaveProtocolEvent
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.FragmentProtocolBinding
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
+import smartdevelop.ir.eram.showcaseviewlib.config.PointerType
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -113,7 +117,34 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
             }
         }
 
-
+        GuideView.Builder(requireContext())
+            .setTitle("Удалить протокол!")
+            .setContentText("Нажмите сюла чтобы удалить протокол\n")
+            .setTargetView(binding.toolbar.findViewById(R.id.app_bar_delete))
+            .setGuideListener {
+                GuideView.Builder(requireContext())
+                    .setTitle("Отправить протокол!")
+                    .setContentText("Нажмите сюла чтобы отправить протокол\n")
+                    .setTargetView(binding.toolbar.findViewById(R.id.app_bar_share))
+                    .setGuideListener {
+                        GuideView.Builder(requireContext())
+                            .setTitle("Соханить изменения!")
+                            .setContentText("Нажмите сюла чтобы сохранить изменения в протоколе\n")
+                            .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
+                            .setGuideListener {
+                                Toast.makeText(requireContext(),"Здесь сохранять нажатие",Toast.LENGTH_LONG).show() }
+                            .setPointerType(PointerType.arrow)
+                            .setDismissType(DismissType.outside)
+                            .build()
+                            .show() }
+                    .setPointerType(PointerType.arrow)
+                    .setDismissType(DismissType.outside)
+                    .build()
+                    .show() }
+            .setPointerType(PointerType.arrow)
+            .setDismissType(DismissType.outside)
+            .build()
+            .show()
 
         binding.buttonChanceDate.setOnClickListener {
             DatePickerFragment.newInstance(vm.stateLive.value!!.dateTime).apply {

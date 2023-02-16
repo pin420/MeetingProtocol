@@ -2,6 +2,7 @@ package com.pinkin.meetingprotocol.Fragments
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -17,6 +18,9 @@ import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.FragmentMainBinding
 import com.pinkin.meetingprotocol.navigator
+import smartdevelop.ir.eram.showcaseviewlib.GuideView
+import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
+import smartdevelop.ir.eram.showcaseviewlib.config.PointerType
 import java.text.SimpleDateFormat
 
 class MainFragment : Fragment() {
@@ -33,6 +37,26 @@ class MainFragment : Fragment() {
         vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
+
+        GuideView.Builder(requireContext())
+            .setTitle("Создайте протокол!")
+            .setContentText("Нажмите сюла чтобы создать протокол\n")
+            .setTargetView(binding.addProtocol)
+            .setGuideListener {
+                GuideView.Builder(requireContext())
+                    .setTitle("Поиск!")
+                    .setContentText("Нажмите сюла чтобы искать протокол\n")
+                    .setTargetView(binding.toolbar.findViewById(R.id.app_bar_search))
+                    .setGuideListener {
+                        Toast.makeText(requireContext(),"Здесь сохранять нажатие",Toast.LENGTH_LONG).show() }
+                    .setPointerType(PointerType.arrow)
+                    .setDismissType(DismissType.outside)
+                    .build()
+                    .show() }
+            .setPointerType(PointerType.arrow)
+            .setDismissType(DismissType.outside)
+            .build()
+            .show()
 
         val adapterProtocols = Adapter(object : Listener {
 
