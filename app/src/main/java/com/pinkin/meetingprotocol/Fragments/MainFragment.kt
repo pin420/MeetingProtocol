@@ -9,19 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pinkin.businesslogic.Model.Protocol
+import com.pinkin.meetingprotocol.*
 import com.pinkin.meetingprotocol.Adapter.Adapter
 import com.pinkin.meetingprotocol.Adapter.Listener
-import com.pinkin.meetingprotocol.GetProtocolsEvent
-import com.pinkin.meetingprotocol.GetSearchProtocolsEvent
-import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.FragmentMainBinding
-import com.pinkin.meetingprotocol.navigator
 import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import smartdevelop.ir.eram.showcaseviewlib.config.PointerType
 import java.text.SimpleDateFormat
+
+private const val MAINFRAGMENT = "MAINFRAGMENT"
 
 class MainFragment : Fragment() {
 
@@ -38,25 +37,30 @@ class MainFragment : Fragment() {
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        GuideView.Builder(requireContext())
-            .setTitle("Создайте протокол!")
-            .setContentText("Нажмите сюла чтобы создать протокол\n")
-            .setTargetView(binding.addProtocol)
-            .setGuideListener {
-                GuideView.Builder(requireContext())
-                    .setTitle("Поиск!")
-                    .setContentText("Нажмите сюла чтобы искать протокол\n")
-                    .setTargetView(binding.toolbar.findViewById(R.id.app_bar_search))
-                    .setGuideListener {
-                        Toast.makeText(requireContext(),"Здесь сохранять нажатие",Toast.LENGTH_LONG).show() }
-                    .setPointerType(PointerType.arrow)
-                    .setDismissType(DismissType.outside)
-                    .build()
-                    .show() }
-            .setPointerType(PointerType.arrow)
-            .setDismissType(DismissType.outside)
-            .build()
-            .show()
+        if (!SharedPreferences.getPrefLearn(requireContext(), MAINFRAGMENT)) {
+
+
+            GuideView.Builder(requireContext())
+                .setTitle("Создайте протокол!")
+                .setContentText("Нажмите сюла чтобы создать протокол\n")
+                .setTargetView(binding.addProtocol)
+                .setGuideListener {
+                    GuideView.Builder(requireContext())
+                        .setTitle("Поиск!")
+                        .setContentText("Нажмите сюла чтобы искать протокол\n")
+                        .setTargetView(binding.toolbar.findViewById(R.id.app_bar_search))
+                        .setGuideListener {
+                            SharedPreferences.setPrefLearn(requireContext(), MAINFRAGMENT)
+                            Toast.makeText(requireContext(),"Здесь сохранять нажатие",Toast.LENGTH_LONG).show() }
+                        .setPointerType(PointerType.arrow)
+                        .setDismissType(DismissType.outside)
+                        .build()
+                        .show() }
+                .setPointerType(PointerType.arrow)
+                .setDismissType(DismissType.outside)
+                .build()
+                .show()
+        }
 
         val adapterProtocols = Adapter(object : Listener {
 

@@ -6,6 +6,9 @@ import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
 
 
+private const val ACTIVITY = "ACTIVITY"
+
+
 class MyAppIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +48,16 @@ class MyAppIntro : AppIntro() {
 
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
+
+        SharedPreferences.setPrefLearn(this, ACTIVITY)
         // Decide what to do when the user clicks on "Skip"
         finish()
     }
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
+
+        SharedPreferences.setPrefLearn(this, ACTIVITY)
         // Decide what to do when the user clicks on "Done"
         finish()
     }

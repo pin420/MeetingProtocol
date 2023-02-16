@@ -1,5 +1,6 @@
 package com.pinkin.meetingprotocol
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,9 @@ import com.pinkin.meetingprotocol.Fragments.AddProtocolFragment
 import com.pinkin.meetingprotocol.Fragments.EditProtocolFragment
 import com.pinkin.meetingprotocol.Fragments.MainFragment
 import com.pinkin.meetingprotocol.databinding.ActivityMainBinding
+
+
+private const val ACTIVITY = "ACTIVITY"
 
 class MainActivity : AppCompatActivity(), Navigator {
 
@@ -24,8 +28,10 @@ class MainActivity : AppCompatActivity(), Navigator {
 
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
-        val intent = Intent(this, MyAppIntro::class.java)
-        startActivity(intent)
+        if (!SharedPreferences.getPrefLearn(this, ACTIVITY)) {
+            val intent = Intent(this, MyAppIntro::class.java)
+            startActivity(intent)
+        }
 
         if (savedInstanceState == null) {
             supportFragmentManager

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.SaveProtocolEvent
+import com.pinkin.meetingprotocol.SharedPreferences
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 import com.pinkin.meetingprotocol.databinding.FragmentProtocolBinding
@@ -21,6 +22,8 @@ import java.util.*
 private const val DIALOG_DATE = "DialogDate"
 private const val DIALOG_TIME = "DialogTime"
 private const val REQUEST_DATETIME = 0
+
+private const val ADDFRAGMENT = "ADDFRAGMENT"
 
 class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
 
@@ -78,54 +81,58 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
             }
         }
 
-        GuideView.Builder(requireActivity())
-            .setTitle("Добавьте участников встречи!")
-            .setContentText("Нажмите сюда чтобы добавить участников\n")
-            .setTargetView(binding.editTextFirstName)
-            .setGuideListener {
+        if (!SharedPreferences.getPrefLearn(requireContext(), ADDFRAGMENT)) {
 
             GuideView.Builder(requireActivity())
-                .setTitle("Изменяйте время!")
-                .setContentText("Нажмите сюда чтобы время и дату\n")
-                .setTargetView(binding.buttonChanceDate)
+                .setTitle("Добавьте участников встречи!")
+                .setContentText("Нажмите сюда чтобы добавить участников\n")
+                .setTargetView(binding.editTextFirstName)
                 .setGuideListener {
 
-                    GuideView.Builder(requireActivity())
-                        .setTitle("Запишите протокол!")
-                        .setContentText("Нажмите сюда чтобы написать протокол\n")
-                        .setTargetView(binding.textProtocol)
-                        .setGuideListener {
+                GuideView.Builder(requireActivity())
+                    .setTitle("Изменяйте время!")
+                    .setContentText("Нажмите сюда чтобы время и дату\n")
+                    .setTargetView(binding.buttonChanceDate)
+                    .setGuideListener {
 
                         GuideView.Builder(requireActivity())
-                            .setTitle("Сохраните протокол!")
-                            .setContentText("Нажмите сюда чтобы сохранить\n")
-                            .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
+                            .setTitle("Запишите протокол!")
+                            .setContentText("Нажмите сюда чтобы написать протокол\n")
+                            .setTargetView(binding.textProtocol)
                             .setGuideListener {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Здесь сохранять нажатие",
-                                    Toast.LENGTH_LONG
-                                ).show()
+
+                            GuideView.Builder(requireActivity())
+                                .setTitle("Сохраните протокол!")
+                                .setContentText("Нажмите сюда чтобы сохранить\n")
+                                .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
+                                .setGuideListener {
+                                    SharedPreferences.setPrefLearn(requireContext(), ADDFRAGMENT)
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Здесь сохранять нажатие",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                                .setPointerType(PointerType.arrow)
+                                .setDismissType(DismissType.outside)
+                                .build()
+                                .show()
                             }
                             .setPointerType(PointerType.arrow)
                             .setDismissType(DismissType.outside)
                             .build()
                             .show()
-                        }
-                        .setPointerType(PointerType.arrow)
-                        .setDismissType(DismissType.outside)
-                        .build()
-                        .show()
-                }
+                    }
+                    .setPointerType(PointerType.arrow)
+                    .setDismissType(DismissType.outside)
+                    .build()
+                    .show()}
                 .setPointerType(PointerType.arrow)
                 .setDismissType(DismissType.outside)
                 .build()
-                .show()}
-            .setPointerType(PointerType.arrow)
-            .setDismissType(DismissType.outside)
-            .build()
-            .show()
+                .show()
 
+        }
 
         vm.stateLive.observe(viewLifecycleOwner) {
             binding.textViewDate.text = SimpleDateFormat("dd.MM.yyyy").format(it.dateTime)
