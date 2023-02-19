@@ -28,6 +28,11 @@ private const val ADDFRAGMENT = "ADDFRAGMENT"
 class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
 
     private lateinit var vm: MainViewModel
+    private lateinit var guide1: GuideView
+    private lateinit var guide2: GuideView
+    private lateinit var guide3: GuideView
+    private lateinit var guide4: GuideView
+    private var showNextGuide: Boolean = true
 
 
     override fun onCreateView(
@@ -81,57 +86,65 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
             }
         }
 
-        if (!SharedPreferences.getPrefLearn(requireContext(), ADDFRAGMENT)) {
 
-            GuideView.Builder(requireActivity())
-                .setTitle("Добавьте участников встречи!")
-                .setContentText("Нажмите сюда чтобы добавить участников\n")
-                .setTargetView(binding.editTextFirstName)
-                .setGuideListener {
+            guide1 =
+                GuideView.Builder(requireActivity())
+                    .setTitle("Сохраните протокол!")
+                    .setContentText("Нажмите сюда чтобы сохранить\n")
+                    .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
+                    .setGuideListener {
+                        SharedPreferences.setPrefLearn(requireContext(), ADDFRAGMENT)
+                        Toast.makeText(
+                            requireContext(),
+                            "Здесь сохранять нажатие",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    .setPointerType(PointerType.arrow)
+                    .setDismissType(DismissType.outside)
+                    .build()
 
+            guide2 =
+                GuideView.Builder(requireActivity())
+                    .setTitle("Запишите протокол!")
+                    .setContentText("Нажмите сюда чтобы написать протокол\n")
+                    .setTargetView(binding.textProtocol)
+                    .setGuideListener {
+                        if(showNextGuide){
+                            guide1.show()}
+                    }
+                    .setPointerType(PointerType.arrow)
+                    .setDismissType(DismissType.outside)
+                    .build()
+
+            guide3 =
                 GuideView.Builder(requireActivity())
                     .setTitle("Изменяйте время!")
                     .setContentText("Нажмите сюда чтобы время и дату\n")
                     .setTargetView(binding.buttonChanceDate)
                     .setGuideListener {
-
-                        GuideView.Builder(requireActivity())
-                            .setTitle("Запишите протокол!")
-                            .setContentText("Нажмите сюда чтобы написать протокол\n")
-                            .setTargetView(binding.textProtocol)
-                            .setGuideListener {
-
-                            GuideView.Builder(requireActivity())
-                                .setTitle("Сохраните протокол!")
-                                .setContentText("Нажмите сюда чтобы сохранить\n")
-                                .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
-                                .setGuideListener {
-                                    SharedPreferences.setPrefLearn(requireContext(), ADDFRAGMENT)
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Здесь сохранять нажатие",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
-                                .setPointerType(PointerType.arrow)
-                                .setDismissType(DismissType.outside)
-                                .build()
-                                .show()
-                            }
-                            .setPointerType(PointerType.arrow)
-                            .setDismissType(DismissType.outside)
-                            .build()
-                            .show()
+                        if(showNextGuide){
+                            guide2.show()}
                     }
                     .setPointerType(PointerType.arrow)
                     .setDismissType(DismissType.outside)
                     .build()
-                    .show()}
+
+            guide4 =
+            GuideView.Builder(requireActivity())
+                .setTitle("Добавьте участников встречи!")
+                .setContentText("Нажмите сюда чтобы добавить участников\n")
+                .setTargetView(binding.editTextFirstName)
+                .setGuideListener {
+                    if(showNextGuide){
+                    guide3.show()}
+                   }
                 .setPointerType(PointerType.arrow)
                 .setDismissType(DismissType.outside)
                 .build()
-                .show()
 
+        if (!SharedPreferences.getPrefLearn(requireContext(), ADDFRAGMENT)) {
+            guide4.show()
         }
 
         vm.stateLive.observe(viewLifecycleOwner) {
@@ -148,6 +161,22 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
     override fun onTimeSet(hour: Int, minute: Int) {
         vm.updateTime(hour, minute)
+    }
+
+    override fun onDestroy() {
+        showNextGuide = false
+
+        if(guide4.isShowing){
+        guide4.dismiss()}
+        if(guide3.isShowing){
+            guide3.dismiss()}
+        if(guide2.isShowing){
+            guide2.dismiss()}
+        if(guide1.isShowing){
+            guide1.dismiss()}
+
+
+        super.onDestroy()
     }
 }
 

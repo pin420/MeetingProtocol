@@ -28,12 +28,12 @@ class MainActivity : AppCompatActivity(), Navigator {
 
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
-        if (!SharedPreferences.getPrefLearn(this, ACTIVITY)) {
-            val intent = Intent(this, MyAppIntro::class.java)
-            startActivity(intent)
-        }
 
         if (savedInstanceState == null) {
+            if (!SharedPreferences.getPrefLearn(this, ACTIVITY)) {
+                val intent = Intent(this, MyAppIntro::class.java)
+                startActivity(intent)
+            }
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragmentContainer, MainFragment())
