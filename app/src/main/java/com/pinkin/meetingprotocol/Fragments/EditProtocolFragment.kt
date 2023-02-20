@@ -37,6 +37,10 @@ private const val EDITFRAGMENT = "EDITFRAGMENT"
 class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
 
     private lateinit var vm: MainViewModel
+    private lateinit var guide1: GuideView
+    private lateinit var guide2: GuideView
+    private lateinit var guide3: GuideView
+    private var showNextGuide: Boolean = true
 
 
     override fun onCreateView(
@@ -120,38 +124,46 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
             }
         }
 
-        if (!SharedPreferences.getPrefLearn(requireContext(), EDITFRAGMENT)) {
+        guide1 =
+        GuideView.Builder(requireContext())
+        .setTitle("Соханить изменения!")
+        .setContentText("Нажмите сюла чтобы сохранить изменения в протоколе\n")
+        .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
+        .setGuideListener {
+            SharedPreferences.setPrefLearn(requireContext(), EDITFRAGMENT)
+            Toast.makeText(requireContext(),"Здесь сохранять нажатие",Toast.LENGTH_LONG).show() }
+        .setPointerType(PointerType.arrow)
+        .setDismissType(DismissType.outside)
+        .build()
 
-            GuideView.Builder(requireContext())
-                .setTitle("Удалить протокол!")
-                .setContentText("Нажмите сюла чтобы удалить протокол\n")
-                .setTargetView(binding.toolbar.findViewById(R.id.app_bar_delete))
-                .setGuideListener {
-                    GuideView.Builder(requireContext())
-                        .setTitle("Отправить протокол!")
-                        .setContentText("Нажмите сюла чтобы отправить протокол\n")
-                        .setTargetView(binding.toolbar.findViewById(R.id.app_bar_share))
-                        .setGuideListener {
-                            GuideView.Builder(requireContext())
-                                .setTitle("Соханить изменения!")
-                                .setContentText("Нажмите сюла чтобы сохранить изменения в протоколе\n")
-                                .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
-                                .setGuideListener {
-                                    SharedPreferences.setPrefLearn(requireContext(), EDITFRAGMENT)
-                                    Toast.makeText(requireContext(),"Здесь сохранять нажатие",Toast.LENGTH_LONG).show() }
-                                .setPointerType(PointerType.arrow)
-                                .setDismissType(DismissType.outside)
-                                .build()
-                                .show() }
-                        .setPointerType(PointerType.arrow)
-                        .setDismissType(DismissType.outside)
-                        .build()
-                        .show() }
-                .setPointerType(PointerType.arrow)
-                .setDismissType(DismissType.outside)
-                .build()
-                .show()
+        guide2 =
+        GuideView.Builder(requireContext())
+        .setTitle("Отправить протокол!")
+        .setContentText("Нажмите сюла чтобы отправить протокол\n")
+        .setTargetView(binding.toolbar.findViewById(R.id.app_bar_share))
+        .setGuideListener {
+            if(showNextGuide){ guide1.show()}
         }
+        .setPointerType(PointerType.arrow)
+        .setDismissType(DismissType.outside)
+        .build()
+
+        guide3 =
+        GuideView.Builder(requireContext())
+        .setTitle("Удалить протокол!")
+        .setContentText("Нажмите сюла чтобы удалить протокол\n")
+        .setTargetView(binding.toolbar.findViewById(R.id.app_bar_delete))
+        .setGuideListener {
+            if(showNextGuide){ guide2.show()}
+        }
+        .setPointerType(PointerType.arrow)
+        .setDismissType(DismissType.outside)
+        .build()
+
+        if (!SharedPreferences.getPrefLearn(requireContext(), EDITFRAGMENT)) {
+            guide3.show()
+        }
+
 
         binding.buttonChanceDate.setOnClickListener {
             DatePickerFragment.newInstance(vm.stateLive.value!!.dateTime).apply {
@@ -181,6 +193,19 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
 
     override fun onTimeSet(hour: Int, minute: Int) {
         vm.updateTime(hour, minute)
+    }
+
+    override fun onDestroy() {
+        showNextGuide = false
+
+        if(guide3.isShowing){
+            guide3.dismiss()}
+        if(guide2.isShowing){
+            guide2.dismiss()}
+        if(guide1.isShowing){
+            guide1.dismiss()}
+
+        super.onDestroy()
     }
 
     companion object {
