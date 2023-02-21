@@ -130,7 +130,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
         .setContentText("Ваши изменения будут сохранены по нажатию\n")
         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
         .setGuideListener {
-            SharedPreferences.setPrefLearn(requireContext(), EDITFRAGMENT)
+            SharedPreferences.setPrefLearnTrue(requireContext(), EDITFRAGMENT)
             Toast.makeText(requireContext(),"ОБУЧЕНИЕ ЗАВЕРШЕНО!\nУДАЧИ",Toast.LENGTH_LONG).show() }
         .setPointerType(PointerType.arrow)
         .setDismissType(DismissType.outside)

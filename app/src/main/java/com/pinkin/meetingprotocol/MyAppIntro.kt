@@ -54,7 +54,7 @@ class MyAppIntro : AppIntro() {
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
 
-        SharedPreferences.setPrefLearn(this, ACTIVITY)
+        SharedPreferences.setPrefLearnTrue(this, ACTIVITY)
         // Decide what to do when the user clicks on "Skip"
         finish()
     }
@@ -62,7 +62,7 @@ class MyAppIntro : AppIntro() {
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
 
-        SharedPreferences.setPrefLearn(this, ACTIVITY)
+        SharedPreferences.setPrefLearnTrue(this, ACTIVITY)
         // Decide what to do when the user clicks on "Done"
         finish()
     }

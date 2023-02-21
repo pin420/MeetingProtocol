@@ -11,12 +11,18 @@ object SharedPreferences {
         return prefs.getBoolean(key, false)
     }
 
-    fun setPrefLearn(context: Context, key: String) {
+    fun setPrefLearnTrue(context: Context, key: String) {
         PreferenceManager.getDefaultSharedPreferences(context)
             .edit()
             .putBoolean(key, true)
             .apply()
     }
 
+    fun setPrefLearnFalse(context: Context, key: String) {
+        PreferenceManager.getDefaultSharedPreferences(context)
+            .edit()
+            .putBoolean(key, false)
+            .apply()
+    }
 
 }

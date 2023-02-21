@@ -1,5 +1,6 @@
 package com.pinkin.meetingprotocol.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -20,6 +21,7 @@ import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 import smartdevelop.ir.eram.showcaseviewlib.config.PointerType
 import java.text.SimpleDateFormat
 
+private const val ACTIVITY = "ACTIVITY"
 private const val MAINFRAGMENT = "MAINFRAGMENT"
 private const val ADDFRAGMENT = "ADDFRAGMENT"
 private const val EDITFRAGMENT = "EDITFRAGMENT"
@@ -38,6 +40,14 @@ class MainFragment : Fragment() {
         vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
+
+
+        if (savedInstanceState == null) {
+            if (!SharedPreferences.getPrefLearn(requireContext(), ACTIVITY)) {
+                val intent = Intent(requireContext(), MyAppIntro::class.java)
+                startActivity(intent)
+            }
+        }
 
         if (!SharedPreferences.getPrefLearn(requireContext(), EDITFRAGMENT)) {
             if (SharedPreferences.getPrefLearn(requireContext(), ADDFRAGMENT)) {
@@ -62,7 +72,7 @@ class MainFragment : Fragment() {
                         .setContentText("Здесь ищем существующие протоколы\n")
                         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_search))
                         .setGuideListener {
-                            SharedPreferences.setPrefLearn(requireContext(), MAINFRAGMENT)
+                            SharedPreferences.setPrefLearnTrue(requireContext(), MAINFRAGMENT)
                             Toast.makeText(requireContext(),"Создайте свой первый протокол!",Toast.LENGTH_LONG).show() }
                         .setPointerType(PointerType.arrow)
                         .setDismissType(DismissType.outside)

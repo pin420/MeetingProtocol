@@ -11,9 +11,14 @@ import com.pinkin.meetingprotocol.databinding.AboutAppBinding
 import android.content.DialogInterface.OnClickListener
 import androidx.lifecycle.ViewModelProvider
 import com.pinkin.meetingprotocol.DropDatabaseEvent
+import com.pinkin.meetingprotocol.SharedPreferences
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 
+private const val ACTIVITY = "ACTIVITY"
+private const val MAINFRAGMENT = "MAINFRAGMENT"
+private const val ADDFRAGMENT = "ADDFRAGMENT"
+private const val EDITFRAGMENT = "EDITFRAGMENT"
 
 class AboutFragment : Fragment() {
 
@@ -54,10 +59,17 @@ class AboutFragment : Fragment() {
             builder.create().show()
 
 
+        }
+
+        binding.deleteLearn.setOnClickListener {
+
+            SharedPreferences.setPrefLearnFalse(requireContext(), ACTIVITY)
+            SharedPreferences.setPrefLearnFalse(requireContext(), MAINFRAGMENT)
+            SharedPreferences.setPrefLearnFalse(requireContext(), ADDFRAGMENT)
+            SharedPreferences.setPrefLearnFalse(requireContext(), EDITFRAGMENT)
 
 
         }
-
 
 
 

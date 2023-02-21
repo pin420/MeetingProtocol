@@ -14,8 +14,6 @@ import com.pinkin.meetingprotocol.Fragments.MainFragment
 import com.pinkin.meetingprotocol.databinding.ActivityMainBinding
 
 
-private const val ACTIVITY = "ACTIVITY"
-
 class MainActivity : AppCompatActivity(), Navigator {
 
     private lateinit var binding: ActivityMainBinding
@@ -31,10 +29,7 @@ class MainActivity : AppCompatActivity(), Navigator {
 
 
         if (savedInstanceState == null) {
-            if (!SharedPreferences.getPrefLearn(this, ACTIVITY)) {
-                val intent = Intent(this, MyAppIntro::class.java)
-                startActivity(intent)
-            }
+
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragmentContainer, MainFragment())

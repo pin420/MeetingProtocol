@@ -94,7 +94,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
                     .setContentText("Ваш протокол будет сохранён по нажатию\n")
                     .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
                     .setGuideListener {
-                        SharedPreferences.setPrefLearn(requireContext(), ADDFRAGMENT)
+                        SharedPreferences.setPrefLearnTrue(requireContext(), ADDFRAGMENT)
                         Toast.makeText(
                             requireContext(),
                             "Заполните и сохраните свой первый протокол!",
