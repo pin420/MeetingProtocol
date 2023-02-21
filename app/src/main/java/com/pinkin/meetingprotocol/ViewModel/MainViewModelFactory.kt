@@ -3,10 +3,7 @@ package com.pinkin.meetingprotocol.ViewModel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.pinkin.businesslogic.UseCase.DeleteProtocolUseCase
-import com.pinkin.businesslogic.UseCase.GetProtocolsUseCase
-import com.pinkin.businesslogic.UseCase.GetSearchProtocolsUseCase
-import com.pinkin.businesslogic.UseCase.SaveProtocolUseCase
+import com.pinkin.businesslogic.UseCase.*
 import com.pinkin.datasource.Room.Repositories
 
 class MainViewModelFactory(context: Context) : ViewModelProvider.Factory {
@@ -26,12 +23,16 @@ class MainViewModelFactory(context: Context) : ViewModelProvider.Factory {
     private val deleteProtocolUseCase by lazy(LazyThreadSafetyMode.NONE) {
         DeleteProtocolUseCase(repository = roomRepository) }
 
+    private val dropDatabaseUseCase by lazy(LazyThreadSafetyMode.NONE) {
+        DropDatabaseUseCase(repository = roomRepository) }
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MainViewModel(
             saveProtocolUseCase = saveProtocolUseCase,
             getProtocolsUseCase = getProtocolsUseCase,
             deleteProtocolUseCase = deleteProtocolUseCase,
-            getSearchProtocolsUseCase = getSearchProtocolsUseCase
+            getSearchProtocolsUseCase = getSearchProtocolsUseCase,
+            dropDatabaseUseCase = dropDatabaseUseCase
         ) as T
     }
 }

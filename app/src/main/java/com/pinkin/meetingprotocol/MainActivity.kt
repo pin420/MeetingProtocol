@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.datasource.Room.Repositories
+import com.pinkin.meetingprotocol.Fragments.AboutFragment
 import com.pinkin.meetingprotocol.Fragments.AddProtocolFragment
 import com.pinkin.meetingprotocol.Fragments.EditProtocolFragment
 import com.pinkin.meetingprotocol.Fragments.MainFragment
@@ -49,6 +50,9 @@ class MainActivity : AppCompatActivity(), Navigator {
         launchFragment(EditProtocolFragment.newInstance(protocol))
     }
 
+    override fun showAbout() {
+        launchFragment(AboutFragment())
+    }
 
 
     private fun launchFragment(fragment: Fragment) {

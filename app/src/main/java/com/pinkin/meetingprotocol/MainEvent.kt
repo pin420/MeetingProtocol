@@ -2,6 +2,7 @@ package com.pinkin.meetingprotocol
 
 interface MainEvent
 
+class DropDatabaseEvent : MainEvent
 
 class GetProtocolsEvent : MainEvent
 

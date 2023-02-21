@@ -5,7 +5,6 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -196,6 +195,10 @@ class MainFragment : Fragment() {
                     item.isChecked = true
                     vm.setSearchOption(2)
                     vm.send(getSearchProtocolsEvent)
+                    return true
+                }
+                R.id.about_app -> {
+                    navigator().showAbout()
                     return true
                 }
                 else -> return false

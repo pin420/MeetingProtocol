@@ -6,10 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pinkin.businesslogic.Model.Protocol
-import com.pinkin.businesslogic.UseCase.DeleteProtocolUseCase
-import com.pinkin.businesslogic.UseCase.GetProtocolsUseCase
-import com.pinkin.businesslogic.UseCase.GetSearchProtocolsUseCase
-import com.pinkin.businesslogic.UseCase.SaveProtocolUseCase
+import com.pinkin.businesslogic.UseCase.*
 import com.pinkin.meetingprotocol.*
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -22,7 +19,8 @@ class MainViewModel(
     private val saveProtocolUseCase: SaveProtocolUseCase,
     private val getProtocolsUseCase: GetProtocolsUseCase,
     private val deleteProtocolUseCase: DeleteProtocolUseCase,
-    private val getSearchProtocolsUseCase: GetSearchProtocolsUseCase
+    private val getSearchProtocolsUseCase: GetSearchProtocolsUseCase,
+    private val dropDatabaseUseCase: DropDatabaseUseCase,
 ): ViewModel() {
 
     private val stateLiveMutable = MutableLiveData<MainState>()
@@ -44,6 +42,9 @@ class MainViewModel(
     fun send(event: MainEvent) {
         viewModelScope.launch {
             when (event) {
+                is DropDatabaseEvent -> {
+                    dropDatabaseUseCase.execute()
+                }
                 is SaveProtocolEvent -> {
                     saveProtocolUseCase.execute(
                         event.getId(),

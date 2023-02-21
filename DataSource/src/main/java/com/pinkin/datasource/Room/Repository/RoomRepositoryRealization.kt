@@ -63,8 +63,12 @@ class RoomRepositoryRealization(
         }
 
         return protocols
+    }
 
-
+    override fun dropDatabase() {
+        GlobalScope.launch {
+            protocolsDao.dropDB()
+        }
     }
 }
 

@@ -9,6 +9,8 @@ interface Navigator {
 
     fun showEditProtocol(protocol: Protocol)
 
+    fun showAbout()
+
 }
 
 fun Fragment.navigator(): Navigator {

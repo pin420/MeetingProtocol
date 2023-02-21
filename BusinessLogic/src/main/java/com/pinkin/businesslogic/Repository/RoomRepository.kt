@@ -12,4 +12,7 @@ interface RoomRepository {
     fun deleteProtocol(id: Int)
 
     fun getSearchProtocols(query: String, searchOption: Int): List<Protocol>
+
+    fun dropDatabase()
+
 }

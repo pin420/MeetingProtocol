@@ -35,4 +35,6 @@ interface ProtocolsDao {
             "OR protocols.protocol LIKE :query ORDER BY protocols.date DESC, protocols.time DESC")
     fun getSearch(query: String): List<ProtocolDbEntity>
 
+    @Query("DELETE FROM protocols")
+    fun dropDB()
 }
