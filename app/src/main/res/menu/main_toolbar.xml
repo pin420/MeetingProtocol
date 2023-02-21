@@ -27,4 +27,10 @@
             android:title="@string/search_option_all"
             app:showAsAction="never" />
     </group>
+
+    <item
+        android:id="@+id/about_app"
+        android:title="@string/About"
+        app:showAsAction="never" />
+
 </menu>

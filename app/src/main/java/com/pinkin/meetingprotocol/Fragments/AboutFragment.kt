@@ -37,6 +37,15 @@ class AboutFragment : Fragment() {
         val binding = AboutAppBinding.inflate(inflater, container, false)
 
 
+        binding.toolbar.apply {
+            setTitle(R.string.About)
+
+            setNavigationIcon(com.google.android.material.R.drawable.abc_ic_ab_back_material)
+            setNavigationOnClickListener {
+                getActivity()?.onBackPressed();
+            }
+        }
+
         binding.deleteDatabase.setOnClickListener{
 
             val builder = AlertDialog.Builder(requireContext())
@@ -68,7 +77,7 @@ class AboutFragment : Fragment() {
             SharedPreferences.setPrefLearnFalse(requireContext(), ADDFRAGMENT)
             SharedPreferences.setPrefLearnFalse(requireContext(), EDITFRAGMENT)
 
-
+            getActivity()?.onBackPressed();
         }
 
 
