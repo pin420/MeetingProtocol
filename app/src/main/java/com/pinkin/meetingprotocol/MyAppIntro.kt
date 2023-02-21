@@ -27,7 +27,7 @@ class MyAppIntro : AppIntro() {
         ))
         addSlide(AppIntroFragment.createInstance(
             title = "Фиксировать встречи",
-            description = "Чтобы помнить с кем, когда\nи что вы обсуждали",
+            description = "Чтобы помнить с кем, когда\nи что вы обсудили",
             imageDrawable = R.drawable.intro_baseline_draw_24,
             backgroundColorRes = R.color.slide2,
         ))
@@ -39,7 +39,7 @@ class MyAppIntro : AppIntro() {
         ))
         addSlide(AppIntroFragment.createInstance(
             title = "Делиться ими",
-            description = "Чтобы долго не пересказывать встречи и\nпоказывать свою искренность в проффессиональной среде",
+            description = "Чтобы не пересказывать встречи и\nпоказывать свою системность в профессиональной среде",
             backgroundColorRes = R.color.slide4,
             imageDrawable = R.drawable.intro_baseline_people_24
         ))

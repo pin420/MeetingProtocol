@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,8 @@ import smartdevelop.ir.eram.showcaseviewlib.config.PointerType
 import java.text.SimpleDateFormat
 
 private const val MAINFRAGMENT = "MAINFRAGMENT"
+private const val ADDFRAGMENT = "ADDFRAGMENT"
+private const val EDITFRAGMENT = "EDITFRAGMENT"
 
 class MainFragment : Fragment() {
 
@@ -37,21 +40,31 @@ class MainFragment : Fragment() {
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
 
+        if (!SharedPreferences.getPrefLearn(requireContext(), EDITFRAGMENT)) {
+            if (SharedPreferences.getPrefLearn(requireContext(), ADDFRAGMENT)) {
+                Toast.makeText(
+                    requireContext(),
+                    "Откройте свой первый протокол!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+
         if (!SharedPreferences.getPrefLearn(requireContext(), MAINFRAGMENT)) {
 
 
             GuideView.Builder(requireContext())
-                .setTitle("Создайте протокол!")
-                .setContentText("Нажмите сюла чтобы создать протокол\n")
+                .setTitle("Добавление протокола!")
+                .setContentText("Здесь создаём новый протокол\n")
                 .setTargetView(binding.addProtocol)
                 .setGuideListener {
                     GuideView.Builder(requireContext())
                         .setTitle("Поиск!")
-                        .setContentText("Нажмите сюла чтобы искать протокол\n")
+                        .setContentText("Здесь ищем существующие протоколы\n")
                         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_search))
                         .setGuideListener {
                             SharedPreferences.setPrefLearn(requireContext(), MAINFRAGMENT)
-                            Toast.makeText(requireContext(),"Здесь сохранять нажатие",Toast.LENGTH_LONG).show() }
+                            Toast.makeText(requireContext(),"Создайте свой первый протокол!",Toast.LENGTH_LONG).show() }
                         .setPointerType(PointerType.arrow)
                         .setDismissType(DismissType.outside)
                         .build()

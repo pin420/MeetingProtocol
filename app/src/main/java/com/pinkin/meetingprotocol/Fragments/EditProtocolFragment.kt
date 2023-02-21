@@ -126,20 +126,20 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
 
         guide1 =
         GuideView.Builder(requireContext())
-        .setTitle("Соханить изменения!")
-        .setContentText("Нажмите сюла чтобы сохранить изменения в протоколе\n")
+        .setTitle("Сохранение изменений!")
+        .setContentText("Ваши изменения будут сохранены по нажатию\n")
         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
         .setGuideListener {
             SharedPreferences.setPrefLearn(requireContext(), EDITFRAGMENT)
-            Toast.makeText(requireContext(),"Здесь сохранять нажатие",Toast.LENGTH_LONG).show() }
+            Toast.makeText(requireContext(),"ОБУЧЕНИЕ ЗАВЕРШЕНО!\nУДАЧИ",Toast.LENGTH_LONG).show() }
         .setPointerType(PointerType.arrow)
         .setDismissType(DismissType.outside)
         .build()
 
         guide2 =
         GuideView.Builder(requireContext())
-        .setTitle("Отправить протокол!")
-        .setContentText("Нажмите сюла чтобы отправить протокол\n")
+        .setTitle("Поделиться протоколом!")
+        .setContentText("Здесь можно отправить протокол через другие приложения\n")
         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_share))
         .setGuideListener {
             if(showNextGuide){ guide1.show()}
@@ -150,8 +150,8 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
 
         guide3 =
         GuideView.Builder(requireContext())
-        .setTitle("Удалить протокол!")
-        .setContentText("Нажмите сюла чтобы удалить протокол\n")
+        .setTitle("Удаление протокола!")
+        .setContentText("Ваш протокол будет удалён по нажатию\n")
         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_delete))
         .setGuideListener {
             if(showNextGuide){ guide2.show()}
