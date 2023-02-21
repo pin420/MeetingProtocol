@@ -40,7 +40,7 @@ class Adapter(
             meetTitle.text = protocol.name
             meetDate.text = protocol.date
             meetTime.text = protocol.time
-            meetProtocol.text = protocol.protocol
+            meetProtocol.text = protocol.protocol.take(150)
         }
     }
 
