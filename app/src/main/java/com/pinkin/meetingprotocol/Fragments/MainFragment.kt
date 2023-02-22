@@ -3,12 +3,12 @@ package com.pinkin.meetingprotocol.Fragments
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.meetingprotocol.*
 import com.pinkin.meetingprotocol.Adapter.Adapter
@@ -23,12 +23,14 @@ import java.text.SimpleDateFormat
 
 private const val ACTIVITY = "ACTIVITY"
 private const val MAINFRAGMENT = "MAINFRAGMENT"
+private const val MAINFRAGMENT2 = "MAINFRAGMENT2"
 private const val ADDFRAGMENT = "ADDFRAGMENT"
 private const val EDITFRAGMENT = "EDITFRAGMENT"
 
 class MainFragment : Fragment() {
 
     private lateinit var vm: MainViewModel
+    private lateinit var guide1: GuideView
 
 
     override fun onCreateView(
@@ -41,6 +43,19 @@ class MainFragment : Fragment() {
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
 
+        guide1 =
+            GuideView.Builder(requireActivity())
+                .setTitle("Ваша встреча!")
+                .setContentText("Нажмите для редактирования\n")
+                .setTargetView(binding.meetsRecyclerView)
+                .setGuideListener {
+                    SharedPreferences.setPrefLearnTrue(requireContext(), MAINFRAGMENT2)
+                    Snackbar.make(binding.root,"Зайдите в свой первый протокол!",Snackbar.LENGTH_INDEFINITE).show()
+                }
+                .setPointerType(PointerType.arrow)
+                .setDismissType(DismissType.outside)
+                .build()
+
 
         if (savedInstanceState == null) {
             if (!SharedPreferences.getPrefLearn(requireContext(), ACTIVITY)) {
@@ -49,15 +64,6 @@ class MainFragment : Fragment() {
             }
         }
 
-        if (!SharedPreferences.getPrefLearn(requireContext(), EDITFRAGMENT)) {
-            if (SharedPreferences.getPrefLearn(requireContext(), ADDFRAGMENT)) {
-                Toast.makeText(
-                    requireContext(),
-                    "Откройте свой первый протокол!",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }
 
         if (!SharedPreferences.getPrefLearn(requireContext(), MAINFRAGMENT)) {
 
@@ -73,7 +79,7 @@ class MainFragment : Fragment() {
                         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_search))
                         .setGuideListener {
                             SharedPreferences.setPrefLearnTrue(requireContext(), MAINFRAGMENT)
-                            Toast.makeText(requireContext(),"Создайте свой первый протокол!",Toast.LENGTH_LONG).show() }
+                            Snackbar.make(binding.root,"Создайте свой первый протокол!",Snackbar.LENGTH_INDEFINITE).show() }
                         .setPointerType(PointerType.arrow)
                         .setDismissType(DismissType.outside)
                         .build()
@@ -114,6 +120,16 @@ class MainFragment : Fragment() {
                 adapterProtocols.protocols = listProtocols
                 binding.meetsRecyclerView.visibility = View.VISIBLE
                 binding.emptyRecyclerInfo.visibility = View.GONE
+
+                if (SharedPreferences.getPrefLearn(requireContext(), ADDFRAGMENT)) {
+                    if (!SharedPreferences.getPrefLearn(requireContext(), EDITFRAGMENT)) {
+                        if (!SharedPreferences.getPrefLearn(requireContext(), MAINFRAGMENT2)) {
+                            if(!guide1.isShowing) {
+                                guide1.show()
+                            }
+                        }
+                    }
+                }
             }
         }
 

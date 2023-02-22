@@ -17,6 +17,7 @@ import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
 
 private const val ACTIVITY = "ACTIVITY"
 private const val MAINFRAGMENT = "MAINFRAGMENT"
+private const val MAINFRAGMENT2 = "MAINFRAGMENT2"
 private const val ADDFRAGMENT = "ADDFRAGMENT"
 private const val EDITFRAGMENT = "EDITFRAGMENT"
 
@@ -74,6 +75,7 @@ class AboutFragment : Fragment() {
 
             SharedPreferences.setPrefLearnFalse(requireContext(), ACTIVITY)
             SharedPreferences.setPrefLearnFalse(requireContext(), MAINFRAGMENT)
+            SharedPreferences.setPrefLearnFalse(requireContext(), MAINFRAGMENT2)
             SharedPreferences.setPrefLearnFalse(requireContext(), ADDFRAGMENT)
             SharedPreferences.setPrefLearnFalse(requireContext(), EDITFRAGMENT)
 

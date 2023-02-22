@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.SaveProtocolEvent
 import com.pinkin.meetingprotocol.SharedPreferences
@@ -95,11 +95,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
                     .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
                     .setGuideListener {
                         SharedPreferences.setPrefLearnTrue(requireContext(), ADDFRAGMENT)
-                        Toast.makeText(
-                            requireContext(),
-                            "Заполните и сохраните свой первый протокол!",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        Snackbar.make(binding.root,"Заполните и сохраните свой первый протокол!",Snackbar.LENGTH_INDEFINITE).show()
                     }
                     .setPointerType(PointerType.arrow)
                     .setDismissType(DismissType.outside)

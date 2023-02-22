@@ -37,7 +37,7 @@ class Adapter(
         holder.binding.root.tag = protocol
 
         holder.binding.apply {
-            meetTitle.text = protocol.name
+            meetTitle.text = protocol.name.take(150)
             meetDate.text = protocol.date
             meetTime.text = protocol.time
             meetProtocol.text = protocol.protocol.take(150)
