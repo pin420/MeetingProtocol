@@ -1,22 +1,50 @@
 package com.pinkin.meetingprotocol.Adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.meetingprotocol.databinding.ItemMeetBinding
+
+class DiffCallback(
+    private val oldList: List<Protocol>,
+    private val newList: List<Protocol>
+):DiffUtil.Callback(){
+
+    override fun getOldListSize(): Int {
+        return oldList.size
+    }
+
+    override fun getNewListSize(): Int {
+        return newList.size
+    }
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val OldUser = oldList[oldItemPosition]
+        val NewUser = newList[newItemPosition]
+        return OldUser.id == NewUser.id
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val OldUser = oldList[oldItemPosition]
+        val NewUser = newList[newItemPosition]
+        return OldUser == NewUser
+    }
+
+}
 
 class Adapter(
     private val listener: Listener
 ) : RecyclerView.Adapter<Adapter.ViewHolder>(), View.OnClickListener {
 
     var protocols: List<Protocol> = emptyList()
-        @SuppressLint("NotifyDataSetChanged")
-        set(newValue) {
+        set(newValue){
+            val diffCallback = DiffCallback(field, newValue)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
             field = newValue
-            notifyDataSetChanged()
+            diffResult.dispatchUpdatesTo(this)
         }
 
 

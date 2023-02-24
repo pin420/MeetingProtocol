@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +32,7 @@ class MainFragment : Fragment() {
 
     private lateinit var vm: MainViewModel
     private lateinit var guide1: GuideView
+    private lateinit var searchView: SearchView
 
 
     override fun onCreateView(
@@ -42,6 +44,8 @@ class MainFragment : Fragment() {
         vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
+
+        postponeEnterTransition()
 
         guide1 =
             GuideView.Builder(requireActivity())
@@ -55,7 +59,6 @@ class MainFragment : Fragment() {
                 .setPointerType(PointerType.arrow)
                 .setDismissType(DismissType.outside)
                 .build()
-
 
         if (savedInstanceState == null) {
             if (!SharedPreferences.getPrefLearn(requireContext(), ACTIVITY)) {
@@ -110,7 +113,7 @@ class MainFragment : Fragment() {
             adapter = adapterProtocols
         }
 
-        vm.send(GetProtocolsEvent())
+
 
         vm.protocolsLive.observe(viewLifecycleOwner) { listProtocols ->
             if (listProtocols.isEmpty()) {
@@ -125,12 +128,14 @@ class MainFragment : Fragment() {
                     if (!SharedPreferences.getPrefLearn(requireContext(), EDITFRAGMENT)) {
                         if (!SharedPreferences.getPrefLearn(requireContext(), MAINFRAGMENT2)) {
                             if(!guide1.isShowing) {
+                                adapterProtocols.protocols = listOf(listProtocols[0])
                                 guide1.show()
                             }
                         }
                     }
                 }
             }
+            (view?.parent as? View)?.doOnPreDraw { startPostponedEnterTransition() }
         }
 
         binding.addProtocol.setOnClickListener {
@@ -159,12 +164,21 @@ class MainFragment : Fragment() {
         inflater.inflate(R.menu.main_toolbar,menu)
 
         val searchItem: MenuItem = menu.findItem(R.id.app_bar_search)
-        val searchView = searchItem.actionView as SearchView
+        searchView = searchItem.actionView as SearchView
 
         when(vm.getSearchOption()) {
-            0 -> menu.findItem(R.id.searchOption_mans).setChecked(true)
-            1 -> menu.findItem(R.id.searchOption_protocol).setChecked(true)
-            2 -> menu.findItem(R.id.searchOption_all).setChecked(true)
+            0 -> {
+                menu.findItem(R.id.searchOption_mans).isChecked = true
+                searchView.queryHint = resources.getString(R.string.search_option_mans);
+            }
+            1 -> {
+                menu.findItem(R.id.searchOption_protocol).isChecked = true
+                searchView.queryHint = resources.getString(R.string.search_option_protocol);
+            }
+            2 -> {
+                menu.findItem(R.id.searchOption_all).isChecked = true
+                searchView.queryHint = resources.getString(R.string.search_option_all);
+            }
         }
 
         searchView.apply {
@@ -209,18 +223,21 @@ class MainFragment : Fragment() {
                     item.isChecked = true
                     vm.setSearchOption(0)
                     vm.send(getSearchProtocolsEvent)
+                    searchView.queryHint = getResources().getString(R.string.search_option_mans);
                     return true
                 }
                 R.id.searchOption_protocol -> {
                     item.isChecked = true
                     vm.setSearchOption(1)
                     vm.send(getSearchProtocolsEvent)
+                    searchView.queryHint = getResources().getString(R.string.search_option_protocol);
                     return true
                 }
                 R.id.searchOption_all -> {
                     item.isChecked = true
                     vm.setSearchOption(2)
                     vm.send(getSearchProtocolsEvent)
+                    searchView.queryHint = getResources().getString(R.string.search_option_all);
                     return true
                 }
                 R.id.about_app -> {

@@ -20,31 +20,29 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="enterAlways"
-            app:layout_scrollEffect="none"
-
             />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        android:layout_marginTop="?attr/actionBarSize">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/meets_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxHeight="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:itemCount="5"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="2"
             tools:listitem="@layout/item_meet">
 
 
         </androidx.recyclerview.widget.RecyclerView>
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_protocol"

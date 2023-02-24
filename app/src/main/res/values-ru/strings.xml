@@ -10,7 +10,7 @@
     <string name="protocol">Протокол</string>
     <string name="change">Изменить</string>
     <string name="share">Поделиться протоколом</string>
-    <string name="delete_dialog">Вы уверены что хотите удалить протокол?</string>
+    <string name="delete_protocol_dialog">Вы уверены что хотите удалить протокол?</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="save_button">Сохранить</string>
@@ -19,4 +19,9 @@
     <string name="template_share">Дата:%1$s %2$s\nУчастники:\n%3$s\nПротокол:\n%4$s\n\nСделано с помощью приложения Meeting protocol</string>
     <string name="name_hint">Сергей Кузнецов</string>
     <string name="RecyclerIsEmpty">Ничего не было найдено.\nДобавьте протокол или измените поисковый запрос.</string>
+    <string name="About">О приложении</string>
+    <string name="reset_instructions">Пройти обучение заново</string>
+    <string name="delete_database">Удалить базу данных</string>
+    <string name="delete_database_dialog">Вы уверены что хотите удалить базу данных безвозвратно?</string>
+
 </resources>

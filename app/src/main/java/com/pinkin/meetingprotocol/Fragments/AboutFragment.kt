@@ -50,7 +50,7 @@ class AboutFragment : Fragment() {
         binding.deleteDatabase.setOnClickListener{
 
             val builder = AlertDialog.Builder(requireContext())
-            builder.setMessage("Вы уверены что хотите удалить базу данных безвозвратно?")
+            builder.setMessage(R.string.delete_database_dialog)
             builder.setCancelable(true)
 
             builder.setPositiveButton(
@@ -60,6 +60,7 @@ class AboutFragment : Fragment() {
                     vm.send(DropDatabaseEvent())
 
                     dialog.cancel()
+                    getActivity()?.onBackPressed();
                 })
 
             builder.setNegativeButton(

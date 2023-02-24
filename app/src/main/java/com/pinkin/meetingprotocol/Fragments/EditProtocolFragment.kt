@@ -82,7 +82,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                     R.id.app_bar_delete -> {
 
                         val builder = AlertDialog.Builder(requireContext())
-                        builder.setMessage(R.string.delete_dialog)
+                        builder.setMessage(R.string.delete_protocol_dialog)
                         builder.setCancelable(true)
 
                         builder.setPositiveButton(

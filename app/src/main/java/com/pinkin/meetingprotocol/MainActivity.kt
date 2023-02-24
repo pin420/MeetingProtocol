@@ -1,7 +1,5 @@
 package com.pinkin.meetingprotocol
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -60,6 +58,7 @@ class MainActivity : AppCompatActivity(), Navigator {
                 R.anim.front_exit,)
             .addToBackStack(null)
             .replace(R.id.fragmentContainer, fragment)
+            .setReorderingAllowed(true)
             .commit()
     }
 }
