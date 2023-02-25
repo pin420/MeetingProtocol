@@ -23,5 +23,6 @@
     <string name="reset_instructions">Пройти обучение заново</string>
     <string name="delete_database">Удалить базу данных</string>
     <string name="delete_database_dialog">Вы уверены что хотите удалить базу данных безвозвратно?</string>
+    <string name="save_changes_dialog">Есть несохранённые изменения.\nСохранить?</string>
 
 </resources>

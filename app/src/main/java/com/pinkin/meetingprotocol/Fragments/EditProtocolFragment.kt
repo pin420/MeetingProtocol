@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -41,7 +42,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
     private lateinit var guide2: GuideView
     private lateinit var guide3: GuideView
     private var showNextGuide: Boolean = true
-
+    private lateinit var binding :  FragmentProtocolBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +52,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
 
         vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
-        val binding = FragmentProtocolBinding.inflate(inflater, container, false)
+        binding = FragmentProtocolBinding.inflate(inflater, container, false)
 
 
         binding.editTextFirstName.append(arguments?.getSerializable(ARG_PROTOCOL_NAME) as String)
@@ -70,10 +71,14 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                 when (it.itemId) {
                     R.id.app_bar_done -> {
 
+                        arguments?.putSerializable(ARG_PROTOCOL_NAME,binding.editTextFirstName.text.toString())
+                        arguments?.putSerializable(ARG_PROTOCOL,binding.textProtocol.text.toString())
+                        vm.chanceDateOrTime = false
+
                         val saveProtocolEvent = SaveProtocolEvent()
                         saveProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
-                        saveProtocolEvent.setName(binding.editTextFirstName.text.toString())
-                        saveProtocolEvent.setProtocol(binding.textProtocol.text.toString())
+                        saveProtocolEvent.setName(arguments?.getSerializable(ARG_PROTOCOL_NAME) as String)
+                        saveProtocolEvent.setProtocol(arguments?.getSerializable(ARG_PROTOCOL) as String)
                         vm.send(saveProtocolEvent)
 
                         getActivity()?.onBackPressed();
@@ -170,6 +175,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                 setTargetFragment(this@EditProtocolFragment, REQUEST_DATETIME)
                 show(this@EditProtocolFragment.requireFragmentManager(), DIALOG_DATE)
             }
+                vm.chanceDateOrTime = true
         }
 
         binding.buttonChanceTime.setOnClickListener {
@@ -177,6 +183,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                 setTargetFragment(this@EditProtocolFragment, REQUEST_DATETIME)
                 show(this@EditProtocolFragment.requireFragmentManager(), DIALOG_TIME)
             }
+                vm.chanceDateOrTime = true
         }
 
         vm.stateLive.observe(viewLifecycleOwner) {
@@ -194,6 +201,53 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
     override fun onTimeSet(hour: Int, minute: Int) {
         vm.updateTime(hour, minute)
     }
+
+    fun checkChanges() : Boolean{
+        return (
+        !vm.chanceDateOrTime &&
+        binding.editTextFirstName.text.toString() == arguments?.getSerializable(ARG_PROTOCOL_NAME) as String &&
+        binding.textProtocol.text.toString() == arguments?.getSerializable(ARG_PROTOCOL) as String)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(!checkChanges()){
+                    vm.chanceDateOrTime = false
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage(R.string.save_changes_dialog)
+                    builder.setCancelable(true)
+
+                    builder.setPositiveButton(
+                        (R.string.yes),
+                        OnClickListener { dialog, id ->
+                            val saveProtocolEvent = SaveProtocolEvent()
+                            saveProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
+                            saveProtocolEvent.setName(binding.editTextFirstName.text.toString())
+                            saveProtocolEvent.setProtocol(binding.textProtocol.text.toString())
+                            vm.send(saveProtocolEvent)
+
+                            dialog.cancel()
+                            isEnabled = false
+                            getActivity()?.onBackPressed();
+                        })
+
+                    builder.setNegativeButton(
+                        (R.string.no),
+                        OnClickListener { dialog, id ->
+                            dialog.cancel()
+                            isEnabled = false
+                            activity?.onBackPressed()
+                        })
+
+                    builder.create().show()
+                }else{
+                    isEnabled = false
+                    activity?.onBackPressed()
+                }
+            }
+        })}
 
     override fun onDestroy() {
         showNextGuide = false

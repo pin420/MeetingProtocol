@@ -31,6 +31,7 @@ class MainViewModel(
 
     private var searchOption = 0
     private var searchQuery: String? = null
+    var chanceDateOrTime = false
 
     init {
         Log.e(TAG, "VM created")
