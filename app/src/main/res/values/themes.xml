@@ -6,11 +6,16 @@
         <item name="colorPrimaryDark">#303F9F</item>
         <item name="colorAccent">#0AD58D</item>
         <item name="android:statusBarColor">#1976D2</item>
+        <item name="snackbarTextViewStyle">@style/SnackBarTextStyle</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
 
+    </style>
+
+    <style name="SnackBarTextStyle" parent="@style/Widget.MaterialComponents.Snackbar.TextView">
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

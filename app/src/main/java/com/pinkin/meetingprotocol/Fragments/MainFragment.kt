@@ -128,6 +128,9 @@ class MainFragment : Fragment() {
                     if (!SharedPreferences.getPrefLearn(requireContext(), EDITFRAGMENT)) {
                         if (!SharedPreferences.getPrefLearn(requireContext(), MAINFRAGMENT2)) {
                             if(!guide1.isShowing) {
+                                binding.meetsRecyclerView.layoutParams = ViewGroup.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT);
                                 adapterProtocols.protocols = listOf(listProtocols[0])
                                 guide1.show()
                             }
