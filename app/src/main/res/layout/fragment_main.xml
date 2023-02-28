@@ -67,7 +67,6 @@
             android:layout_marginEnd="16dp"
             android:foregroundGravity="center"
             android:gravity="center"
-            android:text="@string/RecyclerIsEmpty"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"

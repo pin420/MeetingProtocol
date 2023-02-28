@@ -32,6 +32,7 @@ class MainViewModel(
     private var searchOption = 0
     private var searchQuery: String? = null
     var chanceDateOrTime = false
+    lateinit var lastEventForLoad: MainEvent
 
     init {
         Log.e(TAG, "VM created")
@@ -54,6 +55,7 @@ class MainViewModel(
                         event.getProtocol())
                 }
                 is GetProtocolsEvent -> {
+                    lastEventForLoad = event
                     GlobalScope.launch {
                         protocolsLiveMutable.postValue(getProtocolsUseCase.execute())
                     }
@@ -64,6 +66,7 @@ class MainViewModel(
                     }
                 }
                 is GetSearchProtocolsEvent -> {
+                    lastEventForLoad = event
                     GlobalScope.launch {
                         protocolsLiveMutable.postValue(getSearchProtocolsUseCase.execute(event.getQuery(), getSearchOption()))
                     }

@@ -19,7 +19,8 @@
     <string name="delete_button">Delete</string>
     <string name="template_share">Date:%1$s %2$s\nParticipants:\n%3$s\nProtocol:\n%4$s\n\nMade by Meeting protocol app</string>
     <string name="name_hint">Liam Smith</string>
-    <string name="RecyclerIsEmpty">Nothing was found.\nAdd protocol or change search query.</string>
+    <string name="emptyDataBase">No meetings! \nClick on the add button</string>
+    <string name="emptySearchResults">Nothing found</string>
     <string name="About">About</string>
 
     <string name="reset_instructions">Retrain</string>

@@ -117,6 +117,14 @@ class MainFragment : Fragment() {
 
         vm.protocolsLive.observe(viewLifecycleOwner) { listProtocols ->
             if (listProtocols.isEmpty()) {
+
+                binding.emptyRecyclerTextview.text =
+                    when (vm.lastEventForLoad) {
+                        is GetProtocolsEvent -> getString(R.string.emptyDataBase)
+                        is GetSearchProtocolsEvent -> getString(R.string.emptySearchResults)
+                        else -> {getString(R.string.emptySearchResults)}
+                    }
+
                 binding.meetsRecyclerView.visibility = View.GONE
                 binding.emptyRecyclerInfo.visibility = View.VISIBLE
             } else {
