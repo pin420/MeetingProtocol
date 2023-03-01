@@ -90,12 +90,12 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
             guide5 =
                 GuideView.Builder(requireActivity())
-                    .setTitle("Сохранение протокола!")
-                    .setContentText("Ваш протокол будет сохранён по нажатию\n")
+                    .setTitle("Сохраните сводку")
+                    .setContentText("Нажмите на кнопку, чтобы сохранить карточку с информацией")
                     .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
                     .setGuideListener {
                         SharedPreferences.setPrefLearnTrue(requireContext(), ADDFRAGMENT)
-                        Snackbar.make(binding.root,"Заполните и сохраните свой первый протокол!",Snackbar.LENGTH_INDEFINITE).show()
+                        Snackbar.make(binding.root,"Заполните и сохраните свой первый протокол",Snackbar.LENGTH_INDEFINITE).show()
                     }
                     .setPointerType(PointerType.arrow)
                     .setDismissType(DismissType.outside)
@@ -103,8 +103,8 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
             guide4 =
                 GuideView.Builder(requireActivity())
-                    .setTitle("Запись протокола!")
-                    .setContentText("Здесь фиксируется всё, что посчитаете важным\n")
+                    .setTitle("Запишите сводку")
+                    .setContentText("Зафиксируйте важные моменты, любые подробности и детали")
                     .setTargetView(binding.textProtocol)
                     .setGuideListener {
                         if(showNextGuide){
@@ -116,8 +116,8 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
             guide3 =
                 GuideView.Builder(requireActivity())
-                    .setTitle("Выбор времени!")
-                    .setContentText("Здесь указывается во сколько была встреча\n")
+                    .setTitle("Выберите время")
+                    .setContentText("Запишите, во сколько была встреча или событие")
                     .setTargetView(binding.buttonChanceTime)
                     .setGuideListener {
                         if(showNextGuide){
@@ -129,8 +129,8 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
             guide2 =
                 GuideView.Builder(requireActivity())
-                    .setTitle("Выбор даты!")
-                    .setContentText("Здесь указывается когда была встреча\n")
+                    .setTitle("Выберите дату")
+                    .setContentText("Укажите, когда была встреча или мероприятие")
                     .setTargetView(binding.buttonChanceDate)
                     .setGuideListener {
                         if(showNextGuide){
@@ -142,8 +142,8 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
             guide1 =
             GuideView.Builder(requireActivity())
-                .setTitle("Добавление участников!")
-                .setContentText("Здесь записываются все кто участвовал\n")
+                .setTitle("Добавьте участников")
+                .setContentText("Запишите всех, кто участвовал на встрече, в беседе или событии")
                 .setTargetView(binding.editTextFirstName)
                 .setGuideListener {
                     if(showNextGuide){

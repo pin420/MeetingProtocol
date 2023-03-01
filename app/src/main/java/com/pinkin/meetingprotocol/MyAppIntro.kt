@@ -21,7 +21,7 @@ class MyAppIntro : AppIntro() {
         addSlide(
             AppIntroFragment.createInstance(
             title = "Добро пожаловать\nв Meeting protocol",
-            description = "Здесь можно делать такие вещи, как...",
+            description = "Здесь можно",
             backgroundColorRes = R.color.slide1,
             imageDrawable = R.drawable.icon_alpha_square,
         ))
@@ -32,20 +32,20 @@ class MyAppIntro : AppIntro() {
             backgroundColorRes = R.color.slide2,
         ))
         addSlide(AppIntroFragment.createInstance(
-            title = "Быстро искать протоколы",
-            description = "Чтобы все протоколы встреч\nбыли \"Под рукой\"",
+            title = "Быстро искать сводки",
+            description = "Чтобы все сводки встреч\nбыли под рукой",
             backgroundColorRes = R.color.slide3,
             imageDrawable = R.drawable.intro_baseline_search_24
         ))
         addSlide(AppIntroFragment.createInstance(
-            title = "Делиться ими",
-            description = "Чтобы не пересказывать встречи и\nпоказывать свою системность в профессиональной среде",
+            title = "Моментально делиться информацией",
+            description = "Чтобы не пересказывать встречи и не упустить ничего важного",
             backgroundColorRes = R.color.slide4,
             imageDrawable = R.drawable.intro_baseline_people_24
         ))
         addSlide(AppIntroFragment.createInstance(
-            title = "Давайте попробуем!",
-            description = "Сейчас всё покажем",
+            title = "Давайте попробуем",
+            description = "Сейчас всё покажем)",
             backgroundColorRes = R.color.slide5,
             imageDrawable = R.drawable.intro_baseline_school_24
         ))

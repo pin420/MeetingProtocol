@@ -49,12 +49,12 @@ class MainFragment : Fragment() {
 
         guide1 =
             GuideView.Builder(requireActivity())
-                .setTitle("Ваша встреча!")
-                .setContentText("Нажмите для редактирования\n")
+                .setTitle("Ваша встреча сохранена")
+                .setContentText("Нажмите на карточку, если нужно отредактировать информацию")
                 .setTargetView(binding.meetsRecyclerView)
                 .setGuideListener {
                     SharedPreferences.setPrefLearnTrue(requireContext(), MAINFRAGMENT2)
-                    Snackbar.make(binding.root,"Зайдите в свой первый протокол!",Snackbar.LENGTH_INDEFINITE).show()
+                    Snackbar.make(binding.root,"Откройте свой первый протокол",Snackbar.LENGTH_INDEFINITE).show()
                 }
                 .setPointerType(PointerType.arrow)
                 .setDismissType(DismissType.outside)
@@ -72,17 +72,17 @@ class MainFragment : Fragment() {
 
 
             GuideView.Builder(requireContext())
-                .setTitle("Добавление протокола!")
-                .setContentText("Здесь создаём новый протокол\n")
+                .setTitle("Добавьте протокол")
+                .setContentText("Нажмите на кнопку, чтобы создать новую сводку")
                 .setTargetView(binding.addProtocol)
                 .setGuideListener {
                     GuideView.Builder(requireContext())
-                        .setTitle("Поиск!")
-                        .setContentText("Здесь ищем существующие протоколы\n")
+                        .setTitle("Найдите сводку")
+                        .setContentText("Нажмите на значок, чтобы найти нужную сводку.")
                         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_search))
                         .setGuideListener {
                             SharedPreferences.setPrefLearnTrue(requireContext(), MAINFRAGMENT)
-                            Snackbar.make(binding.root,"Создайте свой первый протокол!",Snackbar.LENGTH_INDEFINITE).show() }
+                            Snackbar.make(binding.root,"Создайте свой первый протокол",Snackbar.LENGTH_INDEFINITE).show() }
                         .setPointerType(PointerType.arrow)
                         .setDismissType(DismissType.outside)
                         .build()

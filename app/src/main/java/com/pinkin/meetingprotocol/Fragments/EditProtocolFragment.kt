@@ -38,7 +38,6 @@ private const val EDITFRAGMENT = "EDITFRAGMENT"
 class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
 
     private lateinit var vm: MainViewModel
-    private lateinit var guide1: GuideView
     private lateinit var guide2: GuideView
     private lateinit var guide3: GuideView
     private var showNextGuide: Boolean = true
@@ -129,34 +128,22 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
             }
         }
 
-        guide1 =
-        GuideView.Builder(requireContext())
-        .setTitle("Сохранение изменений!")
-        .setContentText("Ваши изменения будут сохранены по нажатию\n")
-        .setTargetView(binding.toolbar.findViewById(R.id.app_bar_done))
-        .setGuideListener {
-            SharedPreferences.setPrefLearnTrue(requireContext(), EDITFRAGMENT)
-            Snackbar.make(binding.root,"ОБУЧЕНИЕ ЗАВЕРШЕНО! УДАЧИ", Snackbar.LENGTH_LONG).show() }
-        .setPointerType(PointerType.arrow)
-        .setDismissType(DismissType.outside)
-        .build()
-
         guide2 =
         GuideView.Builder(requireContext())
-        .setTitle("Поделиться протоколом!")
-        .setContentText("Здесь можно отправить протокол через другие приложения\n")
+        .setTitle("Возможность поделиться")
+        .setContentText("Чтобы отправить протокол через другие приложения, нажмите на этот значок")
         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_share))
         .setGuideListener {
-            if(showNextGuide){ guide1.show()}
-        }
+            SharedPreferences.setPrefLearnTrue(requireContext(), EDITFRAGMENT)
+            Snackbar.make(binding.root,"Обучение закончилось\nПользуйтесь с удовольствием!", Snackbar.LENGTH_LONG).show() }
         .setPointerType(PointerType.arrow)
         .setDismissType(DismissType.outside)
         .build()
 
         guide3 =
         GuideView.Builder(requireContext())
-        .setTitle("Удаление протокола!")
-        .setContentText("Ваш протокол будет удалён по нажатию\n")
+        .setTitle("Возможность удалить")
+        .setContentText("Если нужно удалить протокол, нажмите на этот значок")
         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_delete))
         .setGuideListener {
             if(showNextGuide){ guide2.show()}
@@ -256,8 +243,6 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
             guide3.dismiss()}
         if(guide2.isShowing){
             guide2.dismiss()}
-        if(guide1.isShowing){
-            guide1.dismiss()}
 
         super.onDestroy()
     }
