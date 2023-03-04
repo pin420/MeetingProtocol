@@ -38,7 +38,7 @@
     <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
     <string name="save_changes_dialog">There are unsaved changes.\Save?</string>
 
-    <string name="intro_1_title">Welcome to meeting minutes</string>
+    <string name="intro_1_title">Welcome to meeting protocol</string>
     <string name="intro_1_description">Here you can</string>
     <string name="intro_2_title">Fix appointments</string>
     <string name="intro_2_description">To remember with whom, when and what you discussed</string>
@@ -50,9 +50,9 @@
     <string name="intro_5_description">Now everything will help)</string>
 
     <string name="guide_mainProtocol_1_title">Add protocol</string>
-    <string name="guide_mainProtocol_1_contentTitle">Click the button to create a new summary</string>
-    <string name="guide_mainProtocol_2_title">Find the summary</string>
-    <string name="guide_mainProtocol_2_contentTitle">Click the icon to find the summary you want.</string>
+    <string name="guide_mainProtocol_1_contentTitle">Click the button to create a new protocol</string>
+    <string name="guide_mainProtocol_2_title">Find the protocol</string>
+    <string name="guide_mainProtocol_2_contentTitle">Click the icon to find the protocol you want.</string>
     <string name="guide_mainProtocol_2_snackbar">Create your first protocol</string>
     <string name="guide_mainProtocol_3_title">Your meeting has been saved</string>
     <string name="guide_mainProtocol_3_contentTitle">Click on the card to edit the information</string>
@@ -64,9 +64,9 @@
     <string name="guide_addProtocol_2_contentTitle">Indicate when the meeting or event took place</string>
     <string name="guide_addProtocol_3_title">Select a time</string>
     <string name="guide_addProtocol_3_contentTitle">Write down the time of the meeting or event</string>
-    <string name="guide_addProtocol_4_title">Write a summary</string>
+    <string name="guide_addProtocol_4_title">Write a protocol</string>
     <string name="guide_addProtocol_4_contentTitle">Capture important points, any details and details</string>
-    <string name="guide_addProtocol_5_title">Save the summary</string>
+    <string name="guide_addProtocol_5_title">Save the protocol</string>
     <string name="guide_addProtocol_5_contentTitle">Click on the button to save the info card</string>
     <string name="guide_addProtocol_5_snackbar">Fill out and save your first protocol</string>
 
