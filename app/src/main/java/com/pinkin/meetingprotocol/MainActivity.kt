@@ -54,11 +54,10 @@ class MainActivity : AppCompatActivity(), Navigator {
             .setCustomAnimations(
                 R.anim.front_enter,
                 R.anim.back,
-                R.anim.back,
+                0,
                 R.anim.front_exit,)
             .addToBackStack(null)
             .replace(R.id.fragmentContainer, fragment)
-            .setReorderingAllowed(true)
             .commit()
     }
 }

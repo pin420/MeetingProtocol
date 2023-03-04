@@ -3,9 +3,10 @@ package com.pinkin.meetingprotocol.Fragments
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,7 +46,6 @@ class MainFragment : Fragment() {
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        postponeEnterTransition()
 
         guide1 =
             GuideView.Builder(requireActivity())
@@ -125,6 +125,7 @@ class MainFragment : Fragment() {
 
 
         vm.protocolsLive.observe(viewLifecycleOwner) { listProtocols ->
+            val enterAnim: Animation = AnimationUtils.loadAnimation(requireContext(), com.google.android.material.R.anim.abc_fade_in)
             if (listProtocols.isEmpty()) {
 
                 binding.emptyRecyclerTextview.text =
@@ -135,10 +136,17 @@ class MainFragment : Fragment() {
                     }
 
                 binding.meetsRecyclerView.visibility = View.GONE
-                binding.emptyRecyclerInfo.visibility = View.VISIBLE
+
+                if (binding.emptyRecyclerInfo.visibility != View.VISIBLE) {
+                        binding.emptyRecyclerInfo.startAnimation(enterAnim)
+                        binding.emptyRecyclerInfo.visibility = View.VISIBLE}
             } else {
                 adapterProtocols.protocols = listProtocols
-                binding.meetsRecyclerView.visibility = View.VISIBLE
+
+                if (binding.meetsRecyclerView.visibility != View.VISIBLE) {
+                    binding.meetsRecyclerView.startAnimation(enterAnim)
+                    binding.meetsRecyclerView.visibility = View.VISIBLE}
+
                 binding.emptyRecyclerInfo.visibility = View.GONE
 
                 if (SharedPreferences.getPrefLearn(requireContext(), ADDFRAGMENT)) {
@@ -155,7 +163,6 @@ class MainFragment : Fragment() {
                     }
                 }
             }
-            (view?.parent as? View)?.doOnPreDraw { startPostponedEnterTransition() }
         }
 
         binding.addProtocol.setOnClickListener {
