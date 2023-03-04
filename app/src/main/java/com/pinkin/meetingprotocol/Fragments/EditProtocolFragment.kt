@@ -130,20 +130,20 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
 
         guide2 =
         GuideView.Builder(requireContext())
-        .setTitle("Возможность поделиться")
-        .setContentText("Чтобы отправить протокол через другие приложения, нажмите на этот значок")
+        .setTitle(getString(R.string.guide_editProtocol_2_title))
+        .setContentText(getString(R.string.guide_editProtocol_2_contentTitle))
         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_share))
         .setGuideListener {
             SharedPreferences.setPrefLearnTrue(requireContext(), EDITFRAGMENT)
-            Snackbar.make(binding.root,"Обучение закончилось\nПользуйтесь с удовольствием!", Snackbar.LENGTH_LONG).show() }
+            Snackbar.make(binding.root,getString(R.string.guide_editProtocol_2_snackbar), Snackbar.LENGTH_LONG).show() }
         .setPointerType(PointerType.arrow)
         .setDismissType(DismissType.outside)
         .build()
 
         guide3 =
         GuideView.Builder(requireContext())
-        .setTitle("Возможность удалить")
-        .setContentText("Если нужно удалить протокол, нажмите на этот значок")
+        .setTitle(getString(R.string.guide_editProtocol_1_title))
+        .setContentText(getString(R.string.guide_editProtocol_1_contentTitle))
         .setTargetView(binding.toolbar.findViewById(R.id.app_bar_delete))
         .setGuideListener {
             if(showNextGuide){ guide2.show()}

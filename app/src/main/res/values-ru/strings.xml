@@ -26,4 +26,42 @@
     <string name="delete_database_dialog">Вы уверены что хотите удалить базу данных безвозвратно?</string>
     <string name="save_changes_dialog">Есть несохранённые изменения.\nСохранить?</string>
 
+    <string name="intro_1_title">Добро пожаловать в\nMeeting protocol</string>
+    <string name="intro_1_description">Здесь можно</string>
+    <string name="intro_2_title">Фиксировать встречи</string>
+    <string name="intro_2_description">Чтобы помнить с кем, когда\nи что вы обсудили</string>
+    <string name="intro_3_title">Быстро искать сводки</string>
+    <string name="intro_3_description">Чтобы все сводки встреч\nбыли под рукой</string>
+    <string name="intro_4_title">Моментально делиться информацией</string>
+    <string name="intro_4_description">Чтобы не пересказывать встречи и не упустить ничего важного</string>
+    <string name="intro_5_title">Давайте попробуем</string>
+    <string name="intro_5_description">Сейчас всё покажем)</string>
+
+    <string name="guide_mainProtocol_1_title">Добавьте протокол</string>
+    <string name="guide_mainProtocol_1_contentTitle">Нажмите на кнопку, чтобы создать новую сводку</string>
+    <string name="guide_mainProtocol_2_title">Найдите сводку</string>
+    <string name="guide_mainProtocol_2_contentTitle">Нажмите на значок, чтобы найти нужную сводку.</string>
+    <string name="guide_mainProtocol_2_snackbar">Создайте свой первый протокол</string>
+    <string name="guide_mainProtocol_3_title">Ваша встреча сохранена</string>
+    <string name="guide_mainProtocol_3_contentTitle">Нажмите на карточку, если нужно отредактировать информацию</string>
+    <string name="guide_mainProtocol_3_snackbar">Откройте свой первый протокол</string>
+
+    <string name="guide_addProtocol_1_title">Добавьте участников</string>
+    <string name="guide_addProtocol_1_contentTitle">Запишите всех, кто участвовал на встрече, в беседе или событии</string>
+    <string name="guide_addProtocol_2_title">Выберите дату</string>
+    <string name="guide_addProtocol_2_contentTitle">Укажите, когда была встреча или мероприятие</string>
+    <string name="guide_addProtocol_3_title">Выберите время</string>
+    <string name="guide_addProtocol_3_contentTitle">Запишите, во сколько была встреча или событие</string>
+    <string name="guide_addProtocol_4_title">Запишите сводку</string>
+    <string name="guide_addProtocol_4_contentTitle">Зафиксируйте важные моменты, любые подробности и детали</string>
+    <string name="guide_addProtocol_5_title">Сохраните сводку</string>
+    <string name="guide_addProtocol_5_contentTitle">Нажмите на кнопку, чтобы сохранить карточку с информацией</string>
+    <string name="guide_addProtocol_5_snackbar">Заполните и сохраните свой первый протокол</string>
+
+    <string name="guide_editProtocol_1_title">Возможность удалить</string>
+    <string name="guide_editProtocol_1_contentTitle">Если нужно удалить протокол, нажмите на этот значок</string>
+    <string name="guide_editProtocol_2_title">Возможность поделиться</string>
+    <string name="guide_editProtocol_2_contentTitle">Чтобы отправить протокол через другие приложения, нажмите на этот значок</string>
+    <string name="guide_editProtocol_2_snackbar">Обучение закончилось\nПользуйтесь с удовольствием!</string>
+
 </resources>

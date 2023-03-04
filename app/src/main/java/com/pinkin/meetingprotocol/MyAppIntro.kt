@@ -20,32 +20,32 @@ class MyAppIntro : AppIntro() {
         // You can use AppIntroFragment to use a pre-built fragment
         addSlide(
             AppIntroFragment.createInstance(
-            title = "Добро пожаловать\nв Meeting protocol",
-            description = "Здесь можно",
+            title = getString(R.string.intro_1_title),
+            description = getString(R.string.intro_1_description),
             backgroundColorRes = R.color.slide1,
             imageDrawable = R.drawable.icon_alpha_square,
         ))
         addSlide(AppIntroFragment.createInstance(
-            title = "Фиксировать встречи",
-            description = "Чтобы помнить с кем, когда\nи что вы обсудили",
+            title = getString(R.string.intro_2_title),
+            description = getString(R.string.intro_2_description),
             imageDrawable = R.drawable.intro_baseline_draw_24,
             backgroundColorRes = R.color.slide2,
         ))
         addSlide(AppIntroFragment.createInstance(
-            title = "Быстро искать сводки",
-            description = "Чтобы все сводки встреч\nбыли под рукой",
+            title = getString(R.string.intro_3_title),
+            description = getString(R.string.intro_3_description),
             backgroundColorRes = R.color.slide3,
             imageDrawable = R.drawable.intro_baseline_search_24
         ))
         addSlide(AppIntroFragment.createInstance(
-            title = "Моментально делиться информацией",
-            description = "Чтобы не пересказывать встречи и не упустить ничего важного",
+            title = getString(R.string.intro_4_title),
+            description = getString(R.string.intro_4_description),
             backgroundColorRes = R.color.slide4,
             imageDrawable = R.drawable.intro_baseline_people_24
         ))
         addSlide(AppIntroFragment.createInstance(
-            title = "Давайте попробуем",
-            description = "Сейчас всё покажем)",
+            title = getString(R.string.intro_5_title),
+            description = getString(R.string.intro_5_description),
             backgroundColorRes = R.color.slide5,
             imageDrawable = R.drawable.intro_baseline_school_24
         ))
