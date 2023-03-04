@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.businesslogic.UseCase.*
 import com.pinkin.meetingprotocol.*
@@ -31,6 +32,8 @@ class MainViewModel(
 
     private var searchOption = 0
     private var searchQuery: String? = null
+    private lateinit var RecyclerViewPoolVM : RecycledViewPool
+    private var RecyclerViewPoolInit = false
     var chanceDateOrTime = false
     lateinit var lastEventForLoad: MainEvent
 
@@ -133,6 +136,22 @@ class MainViewModel(
 
     fun getSearchQuery(): String? {
         return searchQuery
+    }
+
+    fun setRecyclerPool(data: RecycledViewPool) {
+        RecyclerViewPoolVM = data
+    }
+
+    fun getRecyclerPool(): RecycledViewPool {
+        return RecyclerViewPoolVM
+    }
+
+    fun setRecyclerViewPoolInit() {
+        RecyclerViewPoolInit = true
+    }
+
+    fun getRecyclerViewPoolInit(): Boolean {
+        return RecyclerViewPoolInit
     }
 
     override fun onCleared() {

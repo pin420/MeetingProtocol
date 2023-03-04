@@ -108,9 +108,18 @@ class MainFragment : Fragment() {
         })
 
         val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.recycleChildrenOnDetach = true
         binding.meetsRecyclerView.apply {
             layoutManager = linearLayoutManager
             adapter = adapterProtocols
+            recycledViewPool.setMaxRecycledViews(0,15)
+
+            if(!vm.getRecyclerViewPoolInit()){
+                vm.setRecyclerViewPoolInit()
+                vm.setRecyclerPool(recycledViewPool)
+            }else{
+                setRecycledViewPool(vm.getRecyclerPool())
+            }
         }
 
 
@@ -258,6 +267,11 @@ class MainFragment : Fragment() {
                 else -> return false
             }
 
+    }
+
+    override fun onDestroy() {
+        vm.getRecyclerPool().clear()
+        super.onDestroy()
     }
 }
 
