@@ -52,7 +52,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
         vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
 
         binding = FragmentProtocolBinding.inflate(inflater, container, false)
-
+        binding.editTextFirstName.requestFocus()
 
         binding.editTextFirstName.append(arguments?.getSerializable(ARG_PROTOCOL_NAME) as String)
         binding.textProtocol.append(arguments?.getSerializable(ARG_PROTOCOL) as String)
@@ -227,6 +227,13 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                             isEnabled = false
                             activity?.onBackPressed()
                         })
+
+                    builder.setNeutralButton(
+                        (R.string.cancel),
+                        OnClickListener { dialog, id ->
+                            dialog.cancel()
+                        }
+                    )
 
                     builder.create().show()
                 }else{

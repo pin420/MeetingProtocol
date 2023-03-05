@@ -14,6 +14,7 @@ import com.pinkin.meetingprotocol.DropDatabaseEvent
 import com.pinkin.meetingprotocol.SharedPreferences
 import com.pinkin.meetingprotocol.ViewModel.MainViewModel
 import com.pinkin.meetingprotocol.ViewModel.MainViewModelFactory
+import com.pinkin.meetingprotocol.navigator
 
 private const val ACTIVITY = "ACTIVITY"
 private const val MAINFRAGMENT = "MAINFRAGMENT"
@@ -80,7 +81,7 @@ class AboutFragment : Fragment() {
             SharedPreferences.setPrefLearnFalse(requireContext(), ADDFRAGMENT)
             SharedPreferences.setPrefLearnFalse(requireContext(), EDITFRAGMENT)
 
-            getActivity()?.onBackPressed();
+            navigator().goToMainFragment()
         }
 
 

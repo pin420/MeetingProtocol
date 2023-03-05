@@ -35,7 +35,7 @@ class MainViewModel(
     private lateinit var RecyclerViewPoolVM : RecycledViewPool
     private var RecyclerViewPoolInit = false
     var chanceDateOrTime = false
-    lateinit var lastEventForLoad: MainEvent
+    var lastEventForLoad: MainEvent = GetProtocolsEvent()
 
     init {
         Log.e(TAG, "VM created")
@@ -48,14 +48,24 @@ class MainViewModel(
         viewModelScope.launch {
             when (event) {
                 is DropDatabaseEvent -> {
-                    dropDatabaseUseCase.execute()
+                    val scope = GlobalScope.launch {
+                        dropDatabaseUseCase.execute() }
+
+                    scope.invokeOnCompletion {
+                        send(lastEventForLoad)
+                    }
                 }
                 is SaveProtocolEvent -> {
-                    saveProtocolUseCase.execute(
-                        event.getId(),
-                        event.getName(),
-                        stateLiveMutable.value!!.dateTime,
-                        event.getProtocol())
+                    val scope = GlobalScope.launch {
+                        saveProtocolUseCase.execute(
+                            event.getId(),
+                            event.getName(),
+                            stateLiveMutable.value!!.dateTime,
+                            event.getProtocol()) }
+
+                    scope.invokeOnCompletion {
+                        send(lastEventForLoad)
+                    }
                 }
                 is GetProtocolsEvent -> {
                     lastEventForLoad = event
@@ -64,8 +74,11 @@ class MainViewModel(
                     }
                 }
                 is DeleteProtocolEvent -> {
-                    GlobalScope.launch {
-                        deleteProtocolUseCase.execute(event.getId())
+                    val scope = GlobalScope.launch {
+                        deleteProtocolUseCase.execute(event.getId()) }
+
+                    scope.invokeOnCompletion {
+                        send(lastEventForLoad)
                     }
                 }
                 is GetSearchProtocolsEvent -> {

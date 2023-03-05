@@ -12,8 +12,7 @@ class RoomRepositoryRealization(
     private val protocolsDao: ProtocolsDao
 ) : RoomRepository {
 
-    @OptIn(DelicateCoroutinesApi::class)
-    override fun saveProtocol(id: Int, name: String, dateTime: Date, protocol: String) {
+    override suspend fun saveProtocol(id: Int, name: String, dateTime: Date, protocol: String) {
 
         val entity = ProtocolDbEntity.fromProtocolDbEntity(
             id,
@@ -22,9 +21,9 @@ class RoomRepositoryRealization(
             SimpleDateFormat("HH:mm").format(dateTime),
             protocol)
 
-        GlobalScope.launch {
-            protocolsDao.setProtocol(entity)
-        }
+
+        protocolsDao.setProtocol(entity)
+
     }
 
     override fun getProtocols(): List<Protocol> {
@@ -66,9 +65,8 @@ class RoomRepositoryRealization(
     }
 
     override fun dropDatabase() {
-        GlobalScope.launch {
-            protocolsDao.dropDB()
-        }
+
+        protocolsDao.dropDB()
     }
 }
 

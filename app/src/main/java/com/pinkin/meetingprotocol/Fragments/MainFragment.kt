@@ -55,6 +55,9 @@ class MainFragment : Fragment() {
                 .setGuideListener {
                     SharedPreferences.setPrefLearnTrue(requireContext(), MAINFRAGMENT2)
                     Snackbar.make(binding.root,getString(R.string.guide_mainProtocol_3_snackbar),Snackbar.LENGTH_INDEFINITE).show()
+                    binding.meetsRecyclerView.layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT);
                 }
                 .setPointerType(PointerType.arrow)
                 .setDismissType(DismissType.outside)
@@ -96,6 +99,9 @@ class MainFragment : Fragment() {
         val adapterProtocols = Adapter(object : Listener {
 
             override fun choiceItem(protocol: Protocol) {
+                if (!SharedPreferences.getPrefLearn(requireContext(), EDITFRAGMENT)) {
+                    vm.send(vm.lastEventForLoad)
+                }
 
                 SimpleDateFormat("dd.MM.yyyy").parse(protocol.date)?.let {date ->
                     vm.updateDate(date) }
@@ -268,6 +274,7 @@ class MainFragment : Fragment() {
                     return true
                 }
                 R.id.about_app -> {
+                    searchView.clearFocus()
                     navigator().showAbout()
                     return true
                 }

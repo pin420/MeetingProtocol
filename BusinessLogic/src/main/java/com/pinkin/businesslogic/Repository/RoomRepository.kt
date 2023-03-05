@@ -5,7 +5,7 @@ import java.util.*
 
 interface RoomRepository {
 
-    fun saveProtocol(id: Int, name: String, dateTime: Date, protocol: String)
+    suspend fun saveProtocol(id: Int, name: String, dateTime: Date, protocol: String)
 
     fun getProtocols(): List<Protocol>
 

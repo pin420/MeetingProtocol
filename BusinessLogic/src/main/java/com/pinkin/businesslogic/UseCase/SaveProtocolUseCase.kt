@@ -5,7 +5,7 @@ import java.util.*
 
 class SaveProtocolUseCase(private val repository: RoomRepository) {
 
-    fun execute(id: Int, name: String, dateTime: Date, protocol: String) {
+    suspend fun execute(id: Int, name: String, dateTime: Date, protocol: String) {
 
         repository.saveProtocol(id, name, dateTime, protocol)
     }

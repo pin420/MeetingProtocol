@@ -3,6 +3,7 @@ package com.pinkin.meetingprotocol
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.datasource.Room.Repositories
 import com.pinkin.meetingprotocol.Fragments.AboutFragment
@@ -47,6 +48,20 @@ class MainActivity : AppCompatActivity(), Navigator {
         launchFragment(AboutFragment())
     }
 
+    override fun goToMainFragment() {
+        launchMainFragment(MainFragment())
+    }
+
+    private fun launchMainFragment(fragment: Fragment) {
+        val count = supportFragmentManager.backStackEntryCount
+        if (count > 0) {
+            supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        }
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+    }
 
     private fun launchFragment(fragment: Fragment) {
         supportFragmentManager
@@ -57,7 +72,7 @@ class MainActivity : AppCompatActivity(), Navigator {
                 0,
                 R.anim.front_exit,)
             .addToBackStack(null)
-            .replace(R.id.fragmentContainer, fragment)
+            .add(R.id.fragmentContainer, fragment)
             .commit()
     }
 }

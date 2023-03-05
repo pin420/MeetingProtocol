@@ -46,6 +46,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
         val binding = FragmentProtocolBinding.inflate(inflater, container, false)
 
+        binding.editTextFirstName.requestFocus()
 
         binding.toolbar.apply {
             inflateMenu(R.menu.add_protocol_toolbar)

@@ -14,18 +14,20 @@
     <string name="delete_protocol_dialog">Are you sure you want to delete the protocol?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="cancel">Cancel</string>
     <string name="save_button">Save</string>
     <string name="share_button">Share</string>
     <string name="delete_button">Delete</string>
     <string name="template_share">Date:%1$s %2$s\nParticipants:\n%3$s\nProtocol:\n%4$s\n\nMade by Meeting protocol app</string>
     <string name="name_hint">Liam Smith</string>
-    <string name="emptyDataBase">Oops, there are no entries\nAdd a new protocol</string>
-    <string name="emptySearchResults">Oops, there are no entries\nChange your search term</string>
+    <string name="emptyDataBase">Oops, there are no entries.\nAdd a new protocol.</string>
+    <string name="emptySearchResults">Oops, there are no entries.\nChange your search term.</string>
     <string name="About">About</string>
 
     <string name="reset_instructions">Retrain</string>
-    <string name="delete_database">Delete database</string>
-    <string name="delete_database_dialog">Are you sure you want to permanently delete the database?</string>
+    <string name="delete_database">Delete all protocols</string>
+    <string name="delete_database_dialog">Are you sure you want to permanently delete all protocols?</string>
+    <string name="save_changes_dialog">There are unsaved changes.\Save?</string>
 
     <string name="title_activity_my_app_intro" translatable="false">MyAppIntro</string>
     <!-- Strings used for fragments for navigation -->
@@ -36,7 +38,6 @@
 
     <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
     <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
-    <string name="save_changes_dialog">There are unsaved changes.\Save?</string>
 
     <string name="intro_1_title">Welcome to meeting protocol</string>
     <string name="intro_1_description">Here you can</string>
@@ -47,10 +48,10 @@
     <string name="intro_4_title">Instant public information</string>
     <string name="intro_4_description">In order not to retell meetings and not miss anything important</string>
     <string name="intro_5_title">Let\'s try it</string>
-    <string name="intro_5_description">Now everything will help)</string>
+    <string name="intro_5_description">Now everything will help :)</string>
 
     <string name="guide_mainProtocol_1_title">Add protocol</string>
-    <string name="guide_mainProtocol_1_contentTitle">Click the button to create a new protocol</string>
+    <string name="guide_mainProtocol_1_contentTitle">Click the button to create a new protocol.</string>
     <string name="guide_mainProtocol_2_title">Find the protocol</string>
     <string name="guide_mainProtocol_2_contentTitle">Click the icon to find the protocol you want.</string>
     <string name="guide_mainProtocol_2_snackbar">Create your first protocol</string>
@@ -59,20 +60,21 @@
     <string name="guide_mainProtocol_3_snackbar">Open your first protocol</string>
 
     <string name="guide_addProtocol_1_title">Add members</string>
-    <string name="guide_addProtocol_1_contentTitle">Record everyone who participated in a meeting, conversation, or event</string>
+    <string name="guide_addProtocol_1_contentTitle">Record everyone who participated in a meeting, conversation, or event.</string>
     <string name="guide_addProtocol_2_title">Select date</string>
-    <string name="guide_addProtocol_2_contentTitle">Indicate when the meeting or event took place</string>
+    <string name="guide_addProtocol_2_contentTitle">Indicate when the meeting or event took place.</string>
     <string name="guide_addProtocol_3_title">Select a time</string>
-    <string name="guide_addProtocol_3_contentTitle">Write down the time of the meeting or event</string>
+    <string name="guide_addProtocol_3_contentTitle">Write down the time of the meeting or event.</string>
     <string name="guide_addProtocol_4_title">Write a protocol</string>
-    <string name="guide_addProtocol_4_contentTitle">Capture important points, any details and details</string>
+    <string name="guide_addProtocol_4_contentTitle">Capture important points, any details and details.</string>
     <string name="guide_addProtocol_5_title">Save the protocol</string>
-    <string name="guide_addProtocol_5_contentTitle">Click on the button to save the info card</string>
+    <string name="guide_addProtocol_5_contentTitle">Click on the button to save the info card.</string>
     <string name="guide_addProtocol_5_snackbar">Fill out and save your first protocol</string>
 
     <string name="guide_editProtocol_1_title">Option to delete</string>
-    <string name="guide_editProtocol_1_contentTitle">If you want to delete a protocol, click this icon</string>
+    <string name="guide_editProtocol_1_contentTitle">If you want to delete a protocol, click this icon.</string>
     <string name="guide_editProtocol_2_title">Sharing</string>
-    <string name="guide_editProtocol_2_contentTitle">To send the protocol through other applications, click this icon</string>
+    <string name="guide_editProtocol_2_contentTitle">To send the protocol through other applications, click this icon.</string>
     <string name="guide_editProtocol_2_snackbar">Training ended\nEnjoy it!</string>
+    <string name="version">Version:1.0</string>
 </resources>

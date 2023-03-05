@@ -11,6 +11,7 @@ interface Navigator {
 
     fun showAbout()
 
+    fun goToMainFragment()
 }
 
 fun Fragment.navigator(): Navigator {
