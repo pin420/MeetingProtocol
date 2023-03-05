@@ -1,4 +1,5 @@
 <resources>
+
     <string name="search_option_mans">Поиск по людям</string>
     <string name="search_option_protocol">Поиск по отчётам</string>
     <string name="search_option_all">Любое совпадение</string>
@@ -22,10 +23,11 @@
     <string name="emptyDataBase">Упс, никаких записей нет.\nДобавьте новый отчёт.</string>
     <string name="emptySearchResults">Упс, никаких записей нет.\nИзмените поисковый запрос.</string>
     <string name="About">О приложении</string>
+
     <string name="reset_instructions">Пройти обучение заново</string>
     <string name="delete_database">Удалить все отчёты</string>
     <string name="delete_database_dialog">Вы уверены что хотите удалить все отчёты безвозвратно?</string>
-    <string name="save_changes_dialog">Есть несохранённые изменения.\nСохранить?</string>
+    <string name="save_changes_dialog">Есть несохранённые изменения. Сохранить?</string>
 
     <string name="intro_1_title">Добро пожаловать в\nMeeting protocol</string>
     <string name="intro_1_description">Здесь можно:</string>
@@ -44,7 +46,7 @@
     <string name="guide_mainProtocol_2_contentTitle">Нажмите на значок, чтобы найти нужный отчёт.</string>
     <string name="guide_mainProtocol_2_snackbar">Создайте свой первый отчёт</string>
     <string name="guide_mainProtocol_3_title">Ваша встреча сохранена</string>
-    <string name="guide_mainProtocol_3_contentTitle">Нажмите на карточку, если нужно отредактировать информацию</string>
+    <string name="guide_mainProtocol_3_contentTitle">Нажмите на карточку, если нужно отредактировать информацию.</string>
     <string name="guide_mainProtocol_3_snackbar">Откройте свой первый отчёт</string>
 
     <string name="guide_addProtocol_1_title">Добавьте участников</string>
@@ -63,7 +65,7 @@
     <string name="guide_editProtocol_1_contentTitle">Если нужно удалить отчёт, нажмите на этот значок.</string>
     <string name="guide_editProtocol_2_title">Возможность поделиться</string>
     <string name="guide_editProtocol_2_contentTitle">Чтобы отправить отчёт через другие приложения, нажмите на этот значок.</string>
-    <string name="guide_editProtocol_2_snackbar">Обучение закончилось\nПользуйтесь с удовольствием!</string>
+    <string name="guide_editProtocol_2_snackbar">Обучение закончилось.\nПользуйтесь с удовольствием!</string>
     <string name="version">Версия:1.0</string>
 
 </resources>
