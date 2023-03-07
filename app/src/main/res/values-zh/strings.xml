@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name" translatable="false">会议协议</string>
+    <string name="search_option_mans">按会员查找</string>
+    <string name="search_option_protocol">按协议查找</string>
+    <string name="search_option_all">任意匹配</string>
+    <string name="new_protocol">新协议</string>
+    <string name="edit_protocol">编辑协议</string>
+    <string name="first_name_last_name">成员</string>
+    <string name="date">日期</string>
+    <string name="time">时间</string>
+    <string name="protocol">会议的主要内容是什么</string>
+    <string name="change">改变</string>
+    <string name="share">分享</string>
+    <string name="delete_protocol_dialog">您确定要删除该协议吗？</string>
+    <string name="yes">是的</string>
+    <string name="no">不</string>
+    <string name="cancel">取消</string>
+    <string name="save_button">节省</string>
+    <string name="share_button">分享</string>
+    <string name="delete_button">删除</string>
+    <string name="template_share">日期:%1$s %2$s\n成员:\n%3$s\n协议:\n%4$s\n\n由会议协议应用程序制作</string>
+    <string name="name_hint">利亚姆史密斯</string>
+    <string name="emptyDataBase">糟糕，没有条目。\n添加新协议。</string>
+    <string name="emptySearchResults">糟糕，没有条目。\n更改您的搜索条件。</string>
+    <string name="About">关于应用</string>
+
+    <string name="reset_instructions">再培训</string>
+    <string name="delete_database">删除所有协议</string>
+    <string name="delete_database_dialog">您确定要永久删除所有协议吗？</string>
+    <string name="save_changes_dialog">有未保存的更改。 节省？</string>
+
+
+
+    <string name="intro_1_title">欢迎使用会议协议</string>
+    <string name="intro_1_description">在这里您可以：</string>
+    <string name="intro_2_title">记录约会</string>
+    <string name="intro_2_description">记住你和谁开会，会议是什么时候举行的，你在会议上讨论了什么</string>
+    <string name="intro_3_title">快速搜索协议</string>
+    <string name="intro_3_description">掌握所有会议协议</string>
+    <string name="intro_4_title">即时分享信息</string>
+    <string name="intro_4_description">为了不重复会议讨论的想法，不遗漏重要的想法</string>
+    <string name="intro_5_title">让我们试试</string>
+    <string name="intro_5_description">现在让我们展示一切 :)</string>
+
+    <string name="guide_mainProtocol_1_title">添加协议</string>
+    <string name="guide_mainProtocol_1_contentTitle">单击按钮以创建新协议。</string>
+    <string name="guide_mainProtocol_2_title">查找协议</string>
+    <string name="guide_mainProtocol_2_contentTitle">单击图标以查找所需的协议。</string>
+    <string name="guide_mainProtocol_2_snackbar">创建您的第一个协议</string>
+    <string name="guide_mainProtocol_3_title">您的会议已保存</string>
+    <string name="guide_mainProtocol_3_contentTitle">单击卡片以编辑信息。</string>
+    <string name="guide_mainProtocol_3_snackbar">打开你的第一个协议</string>
+
+    <string name="guide_addProtocol_1_title">添加成员</string>
+    <string name="guide_addProtocol_1_contentTitle">记录会议的参与者。 记录会议期间举行的对话或事件。</string>
+    <string name="guide_addProtocol_2_title">选择日期</string>
+    <string name="guide_addProtocol_2_contentTitle">指明会议或事件发生的时间。</string>
+    <string name="guide_addProtocol_3_title">选择时间</string>
+    <string name="guide_addProtocol_3_contentTitle">写下会议或活动的时间。</string>
+    <string name="guide_addProtocol_4_title">编写协议</string>
+    <string name="guide_addProtocol_4_contentTitle">捕捉要点和细节。</string>
+    <string name="guide_addProtocol_5_title">保存协议</string>
+    <string name="guide_addProtocol_5_contentTitle">单击按钮以保存卡的详细信息。</string>
+    <string name="guide_addProtocol_5_snackbar">填写并保存您的第一个协议</string>
+    <string name="guide_editProtocol_1_title">删除</string>
+    <string name="guide_editProtocol_1_contentTitle">如果要删除协议，请单击此图标。</string>
+    <string name="guide_editProtocol_2_title">分享</string>
+    <string name="guide_editProtocol_2_contentTitle">要通过其他应用程序发送协议，请单击此图标。</string>
+    <string name="guide_editProtocol_2_snackbar">训练完成。\n好好享受！</string>
+    <string name="version">版本:1.0</string>
+
+    <string name="title_activity_my_app_intro" translatable="false">MyAppIntro</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+</resources>
