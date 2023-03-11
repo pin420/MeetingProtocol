@@ -15,7 +15,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="First Name Last Name"
+        tools:text="First Name Last Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/meet_date"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="01.02.2023"
+        tools:text="01.02.2023"
         app:layout_constraintEnd_toStartOf="@+id/meet_time"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="20:06"
+        tools:text="20:06"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Встреча о планах, прошлом и бдущем"
+        tools:text="Встреча о планах, прошлом и будущем"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/meet_time"
         app:layout_constraintStart_toStartOf="@+id/meet_title"

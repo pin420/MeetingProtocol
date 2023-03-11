@@ -2,6 +2,7 @@
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -53,7 +54,8 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textViewFirstNameTitle"
-                app:layout_constraintTop_toBottomOf="@+id/textViewFirstNameTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewFirstNameTitle"
+                android:autofillHints="name" />
 
             <TextView
                 android:id="@+id/textViewDateTitle"
@@ -71,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="31.01.2023"
+                tools:text="31.01.2023"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/textViewDateTitle"
                 app:layout_constraintTop_toTopOf="@+id/textViewDateTitle" />
@@ -92,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="4:05"
+                tools:text="4:05"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/textViewTimeTitle"
                 app:layout_constraintTop_toTopOf="@+id/textViewTimeTitle" />

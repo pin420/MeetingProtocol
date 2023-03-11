@@ -1,12 +1,11 @@
 package com.pinkin.meetingprotocol.ViewModel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.pinkin.businesslogic.UseCase.*
 import com.pinkin.datasource.Room.Repositories
 
-class MainViewModelFactory(context: Context) : ViewModelProvider.Factory {
+class MainViewModelFactory : ViewModelProvider.Factory {
 
     private val roomRepository by lazy(LazyThreadSafetyMode.NONE) {
         Repositories.roomRepository}

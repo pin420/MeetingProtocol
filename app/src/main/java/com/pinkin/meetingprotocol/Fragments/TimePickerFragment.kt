@@ -16,11 +16,11 @@ class TimePickerFragment : DialogFragment() {
         fun onTimeSet(hour: Int, minute: Int)
     }
 
-    val timeListener = TimePickerDialog.OnTimeSetListener {
+    private val timeListener = TimePickerDialog.OnTimeSetListener {
             _: TimePicker, hour: Int, minute: Int ->
 
         targetFragment?.let { fragment ->
-            (fragment as TimePickerFragment.Callbacks).onTimeSet(hour, minute)
+            (fragment as Callbacks).onTimeSet(hour, minute)
         }
     }
 

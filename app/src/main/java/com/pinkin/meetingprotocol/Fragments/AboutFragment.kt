@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.pinkin.meetingprotocol.R
 import com.pinkin.meetingprotocol.databinding.AboutAppBinding
-import android.content.DialogInterface.OnClickListener
 import androidx.lifecycle.ViewModelProvider
 import com.pinkin.meetingprotocol.DropDatabaseEvent
 import com.pinkin.meetingprotocol.SharedPreferences
@@ -34,7 +33,7 @@ class AboutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
+        vm = ViewModelProvider(requireActivity(), MainViewModelFactory())[MainViewModel::class.java]
 
         val binding = AboutAppBinding.inflate(inflater, container, false)
 
@@ -44,55 +43,43 @@ class AboutFragment : Fragment() {
 
             setNavigationIcon(com.google.android.material.R.drawable.abc_ic_ab_back_material)
             setNavigationOnClickListener {
-                getActivity()?.onBackPressed();
+                activity?.onBackPressed()
             }
         }
 
         binding.deleteDatabase.setOnClickListener{
 
             val builder = AlertDialog.Builder(requireContext())
-            builder.setMessage(R.string.delete_database_dialog)
-            builder.setCancelable(true)
 
-            builder.setPositiveButton(
-                (R.string.yes),
-                OnClickListener { dialog, id ->
+            builder.apply {
+                setMessage(R.string.delete_database_dialog)
+                setCancelable(true)
 
+                setPositiveButton((R.string.yes)) { dialog, _ ->
                     vm.send(DropDatabaseEvent())
-
                     dialog.cancel()
-                    getActivity()?.onBackPressed();
-                })
+                    activity?.onBackPressed() }
 
-            builder.setNegativeButton(
-                (R.string.no),
-                OnClickListener { dialog, id -> dialog.cancel() })
+                setNegativeButton((R.string.no)) { dialog, _ -> dialog.cancel() }
 
-            builder.create().show()
-
-
+                create().show()
+            }
         }
 
         binding.deleteLearn.setOnClickListener {
 
-            SharedPreferences.setPrefLearnFalse(requireContext(), ACTIVITY)
-            SharedPreferences.setPrefLearnFalse(requireContext(), MAINFRAGMENT)
-            SharedPreferences.setPrefLearnFalse(requireContext(), MAINFRAGMENT2)
-            SharedPreferences.setPrefLearnFalse(requireContext(), ADDFRAGMENT)
-            SharedPreferences.setPrefLearnFalse(requireContext(), EDITFRAGMENT)
+            SharedPreferences.apply {
+                setPrefLearnFalse(requireContext(), ACTIVITY)
+                setPrefLearnFalse(requireContext(), MAINFRAGMENT)
+                setPrefLearnFalse(requireContext(), MAINFRAGMENT2)
+                setPrefLearnFalse(requireContext(), ADDFRAGMENT)
+                setPrefLearnFalse(requireContext(), EDITFRAGMENT)
+            }
 
             navigator().goToMainFragment()
         }
 
-
-
-
-
-
-
         return binding.root
     }
-
-
 
 }

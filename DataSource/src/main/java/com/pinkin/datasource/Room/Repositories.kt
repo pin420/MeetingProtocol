@@ -11,7 +11,7 @@ object Repositories {
 
     // -- stuffs
 
-    private val database: AppDatabase by lazy<AppDatabase> {
+    private val database: AppDatabase by lazy {
         Room.databaseBuilder(applicationContext, AppDatabase::class.java, "database.db")
             .build()
     }

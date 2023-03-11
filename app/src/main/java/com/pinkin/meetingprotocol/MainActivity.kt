@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), Navigator {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_MeetingProtocol);
+        setTheme(R.style.Theme_MeetingProtocol)
         super.onCreate(savedInstanceState)
 
         Repositories.init(this)
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), Navigator {
             .beginTransaction()
             .setCustomAnimations(
                 R.anim.front_enter,
-                R.anim.back,
+                0,
                 0,
                 R.anim.front_exit,)
             .addToBackStack(null)

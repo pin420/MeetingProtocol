@@ -40,9 +40,9 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
+        vm = ViewModelProvider(requireActivity(), MainViewModelFactory())[MainViewModel::class.java]
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
 
@@ -57,7 +57,7 @@ class MainFragment : Fragment() {
                     Snackbar.make(binding.root,getString(R.string.guide_mainProtocol_3_snackbar),Snackbar.LENGTH_INDEFINITE).show()
                     binding.meetsRecyclerView.layoutParams = ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT);
+                        ViewGroup.LayoutParams.MATCH_PARENT)
                 }
                 .setPointerType(PointerType.arrow)
                 .setDismissType(DismissType.outside)
@@ -152,7 +152,7 @@ class MainFragment : Fragment() {
                             if(!guide1.isShowing) {
                                 binding.meetsRecyclerView.layoutParams = ViewGroup.LayoutParams(
                                     ViewGroup.LayoutParams.MATCH_PARENT,
-                                    ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    ViewGroup.LayoutParams.WRAP_CONTENT)
                                 adapterProtocols.protocols = listOf(listProtocols[0])
                                 guide1.show()
                             }
@@ -193,15 +193,15 @@ class MainFragment : Fragment() {
         when(vm.getSearchOption()) {
             0 -> {
                 menu.findItem(R.id.searchOption_mans).isChecked = true
-                searchView.queryHint = resources.getString(R.string.search_option_mans);
+                searchView.queryHint = resources.getString(R.string.search_option_mans)
             }
             1 -> {
                 menu.findItem(R.id.searchOption_protocol).isChecked = true
-                searchView.queryHint = resources.getString(R.string.search_option_protocol);
+                searchView.queryHint = resources.getString(R.string.search_option_protocol)
             }
             2 -> {
                 menu.findItem(R.id.searchOption_all).isChecked = true
-                searchView.queryHint = resources.getString(R.string.search_option_all);
+                searchView.queryHint = resources.getString(R.string.search_option_all)
             }
         }
 
@@ -247,21 +247,21 @@ class MainFragment : Fragment() {
                     item.isChecked = true
                     vm.setSearchOption(0)
                     vm.send(getSearchProtocolsEvent)
-                    searchView.queryHint = getResources().getString(R.string.search_option_mans);
+                    searchView.queryHint = resources.getString(R.string.search_option_mans)
                     return true
                 }
                 R.id.searchOption_protocol -> {
                     item.isChecked = true
                     vm.setSearchOption(1)
                     vm.send(getSearchProtocolsEvent)
-                    searchView.queryHint = getResources().getString(R.string.search_option_protocol);
+                    searchView.queryHint = resources.getString(R.string.search_option_protocol)
                     return true
                 }
                 R.id.searchOption_all -> {
                     item.isChecked = true
                     vm.setSearchOption(2)
                     vm.send(getSearchProtocolsEvent)
-                    searchView.queryHint = getResources().getString(R.string.search_option_all);
+                    searchView.queryHint = resources.getString(R.string.search_option_all)
                     return true
                 }
                 R.id.about_app -> {
@@ -274,9 +274,6 @@ class MainFragment : Fragment() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 }
 
 

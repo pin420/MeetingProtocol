@@ -22,15 +22,15 @@ class DiffCallback(
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val OldUser = oldList[oldItemPosition]
-        val NewUser = newList[newItemPosition]
-        return OldUser.id == NewUser.id
+        val oldUser = oldList[oldItemPosition]
+        val newUser = newList[newItemPosition]
+        return oldUser.id == newUser.id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val OldUser = oldList[oldItemPosition]
-        val NewUser = newList[newItemPosition]
-        return OldUser == NewUser
+        val oldUser = oldList[oldItemPosition]
+        val newUser = newList[newItemPosition]
+        return oldUser == newUser
     }
 
 }

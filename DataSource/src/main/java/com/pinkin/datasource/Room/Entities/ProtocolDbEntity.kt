@@ -24,14 +24,17 @@ data class ProtocolDbEntity(
     )
 
     companion object {
-        var format: SimpleDateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm")
-        fun fromProtocolDbEntity(id: Int, nameData: String, dateData: String, timeData: String, protocolData: String) = ProtocolDbEntity(
-            id = id,
-            name = nameData,
-            time = format.parse(dateData+" "+timeData).time,
-            displayTime = dateData+" "+timeData,
-            protocol = protocolData
-        )
+        private var format: SimpleDateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm")
+        fun fromProtocolDbEntity(id: Int, nameData: String, dateData: String, timeData: String, protocolData: String) =
+            format.parse("$dateData $timeData")?.let {
+                ProtocolDbEntity(
+                    id = id,
+                    name = nameData,
+                    time = it.time,
+                    displayTime = "$dateData $timeData",
+                    protocol = protocolData
+                )
+            }
     }
 }
 

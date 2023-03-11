@@ -1,7 +1,6 @@
 package com.pinkin.meetingprotocol.Fragments
 
 import android.app.AlertDialog
-import android.content.DialogInterface.OnClickListener
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,7 +34,7 @@ private const val ARG_PROTOCOL = "arg_protocol"
 
 private const val EDITFRAGMENT = "EDITFRAGMENT"
 
-class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
+class EditProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerFragment.Callbacks {
 
     private lateinit var vm: MainViewModel
     private lateinit var guide2: GuideView
@@ -49,7 +48,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
         savedInstanceState: Bundle?
     ): View {
 
-        vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
+        vm = ViewModelProvider(requireActivity(), MainViewModelFactory())[MainViewModel::class.java]
 
         binding = FragmentProtocolBinding.inflate(inflater, container, false)
         binding.editTextFirstName.requestFocus()
@@ -63,7 +62,7 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
 
             setNavigationIcon(com.google.android.material.R.drawable.abc_ic_ab_back_material)
             setNavigationOnClickListener {
-                getActivity()?.onBackPressed();
+                activity?.onBackPressed()
             }
 
             setOnMenuItemClickListener {
@@ -80,30 +79,28 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                         saveProtocolEvent.setProtocol(arguments?.getSerializable(ARG_PROTOCOL) as String)
                         vm.send(saveProtocolEvent)
 
-                        getActivity()?.onBackPressed();
+                        activity?.onBackPressed()
                         true
                     }
                     R.id.app_bar_delete -> {
 
                         val builder = AlertDialog.Builder(requireContext())
-                        builder.setMessage(R.string.delete_protocol_dialog)
-                        builder.setCancelable(true)
+                        builder.apply {
+                            setMessage(R.string.delete_protocol_dialog)
+                            setCancelable(true)
 
-                        builder.setPositiveButton(
-                            (R.string.yes),
-                            OnClickListener { dialog, id ->
+                            setNegativeButton((R.string.no)) { dialog, _ -> dialog.cancel() }
+
+                            setPositiveButton((R.string.yes)) { dialog, _ ->
                                 val deleteProtocolEvent = DeleteProtocolEvent()
                                 deleteProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
                                 vm.send(deleteProtocolEvent)
 
-                                getActivity()?.onBackPressed();
-                                dialog.cancel() })
+                                activity?.onBackPressed()
+                                dialog.cancel()
+                            }
 
-                        builder.setNegativeButton(
-                            (R.string.no),
-                            OnClickListener { dialog, id -> dialog.cancel() })
-
-                        builder.create().show()
+                            create().show()}
 
                         true
                     }
@@ -203,12 +200,19 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
                 if(!checkChanges()){
                     vm.chanceDateOrTime = false
                     val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage(R.string.save_changes_dialog)
-                    builder.setCancelable(true)
+                    builder.apply {
+                        setMessage(R.string.save_changes_dialog)
+                        setCancelable(true)
 
-                    builder.setPositiveButton(
-                        (R.string.yes),
-                        OnClickListener { dialog, id ->
+                        setNeutralButton((R.string.cancel)) { dialog, _ -> dialog.cancel() }
+
+                        setNegativeButton((R.string.no)) { dialog, _ ->
+                            dialog.cancel()
+                            isEnabled = false
+                            activity?.onBackPressed()
+                        }
+
+                        setPositiveButton((R.string.yes)) { dialog, _ ->
                             val saveProtocolEvent = SaveProtocolEvent()
                             saveProtocolEvent.setId(arguments?.getSerializable(ARG_PROTOCOL_ID) as Int)
                             saveProtocolEvent.setName(binding.editTextFirstName.text.toString())
@@ -217,25 +221,10 @@ class EditProtocolFragment() : Fragment(), DatePickerFragment.Callbacks, TimePic
 
                             dialog.cancel()
                             isEnabled = false
-                            getActivity()?.onBackPressed();
-                        })
-
-                    builder.setNegativeButton(
-                        (R.string.no),
-                        OnClickListener { dialog, id ->
-                            dialog.cancel()
-                            isEnabled = false
                             activity?.onBackPressed()
-                        })
-
-                    builder.setNeutralButton(
-                        (R.string.cancel),
-                        OnClickListener { dialog, id ->
-                            dialog.cancel()
                         }
-                    )
 
-                    builder.create().show()
+                        create().show()}
                 }else{
                     isEnabled = false
                     activity?.onBackPressed()

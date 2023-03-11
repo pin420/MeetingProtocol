@@ -4,7 +4,6 @@ import com.pinkin.businesslogic.Model.Protocol
 import com.pinkin.businesslogic.Repository.RoomRepository
 import com.pinkin.datasource.Room.Dao.ProtocolsDao
 import com.pinkin.datasource.Room.Entities.ProtocolDbEntity
-import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,7 +21,9 @@ class RoomRepositoryRealization(
             protocol)
 
 
-        protocolsDao.setProtocol(entity)
+        if (entity != null) {
+            protocolsDao.setProtocol(entity)
+        }
 
     }
 

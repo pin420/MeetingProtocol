@@ -42,7 +42,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
         savedInstanceState: Bundle?
     ): View {
 
-        vm = ViewModelProvider(requireActivity(), MainViewModelFactory(requireContext()))[MainViewModel::class.java]
+        vm = ViewModelProvider(requireActivity(), MainViewModelFactory())[MainViewModel::class.java]
 
         val binding = FragmentProtocolBinding.inflate(inflater, container, false)
 
@@ -54,7 +54,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
 
             setNavigationIcon(com.google.android.material.R.drawable.abc_ic_ab_back_material)
             setNavigationOnClickListener {
-                getActivity()?.onBackPressed();
+                activity?.onBackPressed()
             }
 
             setOnMenuItemClickListener {
@@ -66,7 +66,7 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
                         saveProtocolEvent.setProtocol(binding.textProtocol.text.toString())
                         vm.send(saveProtocolEvent)
 
-                        getActivity()?.onBackPressed();
+                        activity?.onBackPressed()
                         true
                     }
                     else -> false
@@ -177,17 +177,12 @@ class AddProtocolFragment : Fragment(), DatePickerFragment.Callbacks, TimePicker
     override fun onDestroy() {
         showNextGuide = false
 
-        if(guide1.isShowing){
-            guide1.dismiss()}
-        if(guide2.isShowing){
-            guide2.dismiss()}
-        if(guide3.isShowing){
-            guide3.dismiss()}
-        if(guide4.isShowing){
-            guide4.dismiss()}
-        if(guide5.isShowing){
-            guide5.dismiss()}
+        val guides = listOf(guide1, guide2, guide3, guide4, guide5)
 
+        guides.forEach {
+            if(it.isShowing) {
+                it.dismiss()}
+        }
 
         super.onDestroy()
     }
