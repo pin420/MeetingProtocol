@@ -1,4 +1,4 @@
-# Meetingprotocol
+# Meeting protocol
 RuStore:
 https://apps.rustore.ru/app/com.pinkin.meetingprotocol
 
